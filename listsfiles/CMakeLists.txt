@@ -9,6 +9,9 @@
 # http://www.cmake.org/pipermail/cmake/2011-November/047130.html
 ENABLE_LANGUAGE(CXX)
 
+# Must be set above synthesis of tag_version, CMAKE_xxx_POSTFIX, etc.
+set(BOOST_VERSION 1.5.4)
+
 # Toolset detection.
 if (MSVC60)
   set(BOOST_TOOLSET "vc6")
@@ -77,7 +80,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/bin")
 
 # TODO: This should be moved to ryppl somewhere and include()d in each directory
 include(CMakePackageConfigHelpers)
-set(BOOST_VERSION 1.5.4)
 macro(write_config_file filename)
   file(WRITE ${filename}
   "
