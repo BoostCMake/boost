@@ -24,6 +24,7 @@ target_link_libraries(boost_random_device PUBLIC
   boost::assert
   boost::random
   boost::exception
+  boost::system
   )
 
 add_library(boost::random::device ALIAS boost_random_device)

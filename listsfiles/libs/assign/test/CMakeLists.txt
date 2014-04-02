@@ -24,7 +24,13 @@ foreach(test IN LISTS test_list)
   target_link_libraries(${target} PRIVATE
     boost::assert
     boost::assign
-    boost::unit_test_framework
+    boost::circular_buffer
+    boost::foreach
+    boost::move
+    boost::multi_index
+    boost::ptr_container
+    boost::serialization
+    boost::unit_test_framework  
     )
   list(APPEND test_targets ${target})
   add_test(NAME ${PROJECT_NAME}.${test}

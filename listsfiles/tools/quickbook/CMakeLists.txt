@@ -17,9 +17,11 @@ add_executable(quickbook
   src/dependency_tracker.cpp
   src/utils.cpp
   src/files.cpp
-  src/input_path.cpp
+  src/native_text.cpp
+  src/glob.cpp
+  src/include_paths.cpp
   src/values.cpp
-  src/id_manager.cpp
+  src/document_state.cpp
   src/id_generation.cpp
   src/id_xml.cpp
   src/post_process.cpp

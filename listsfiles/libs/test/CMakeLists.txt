@@ -89,6 +89,7 @@ add_library(boost_unit_test_framework
   src/unit_test_main.cpp
   src/unit_test_monitor.cpp
   src/unit_test_parameters.cpp
+  src/unit_test_suite.cpp
   src/xml_log_formatter.cpp
   src/xml_report_formatter.cpp
   )

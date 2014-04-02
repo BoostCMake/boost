@@ -79,6 +79,7 @@ function(add_math_library name suffix)
 #   )
   target_link_libraries(boost_math_${name} PUBLIC
     boost::assert
+    boost::atomic
     boost::conversion
     boost::concept_check
     boost::config

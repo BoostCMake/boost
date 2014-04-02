@@ -11,6 +11,7 @@ if(CMAKE_USE_WIN32_THREADS_INIT)
     src/win32/thread.cpp
     src/win32/tss_dll.cpp
     src/win32/tss_pe.cpp
+    src/win32/gettickcount64.cpp
     )
 else()
   set(sources

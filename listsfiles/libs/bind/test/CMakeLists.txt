@@ -35,6 +35,7 @@ set(test_list
   bind_eq3_test
   protect_test
   mem_fn_unary_addr_test
+  bind_unary_addr
   )
 
 set(test_targets)
@@ -44,6 +45,12 @@ foreach(test IN LISTS test_list)
   target_link_libraries(${target} PRIVATE
     boost::assert
     boost::bind
+    boost::config
+    boost::exception
+    boost::function
+    boost::mpl
+    boost::smart_ptr
+    boost::utility
     )
   list(APPEND test_targets ${target})
   add_test(NAME ${PROJECT_NAME}.${test}
@@ -51,12 +58,7 @@ foreach(test IN LISTS test_list)
     )
 endforeach()
 
-ryppl_test_suite(
-  COMPILE
-    bind_unary_addr.cpp
-  )
-
 add_custom_target(${PROJECT_NAME}-test
-  COMMAND ${CMAKE_CTEST_COMMAND} -R "^${PROJECT_NAME}" ${CMAKE_BINARY_DIR}
+  COMMAND ${CMAKE_CTEST_COMMAND} -C "$<CONFIGURATION>" -R "^${PROJECT_NAME}" ${CMAKE_BINARY_DIR}
   DEPENDS ${test_targets}
   )

@@ -12,6 +12,10 @@ target_include_directories(boost_ptr_container INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   )
 
+target_link_libraries(boost_ptr_container INTERFACE
+  boost::unordered
+  )
+
 install(DIRECTORY include/ DESTINATION include)
 
 install(TARGETS boost_ptr_container EXPORT ${PROJECT_NAME}Targets
