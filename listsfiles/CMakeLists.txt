@@ -53,6 +53,7 @@ else()
 endif()
 
 # Add -mt for multi-threaded libraries
+OPTION( BUILD_MULTI_THREADED "Build Boost libraries to use multithreaded C runtime" ON )
 if(BUILD_MULTI_THREADED)
   set(tag_mt "-mt")
 else()
