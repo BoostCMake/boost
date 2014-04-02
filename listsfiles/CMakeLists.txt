@@ -70,6 +70,8 @@ endif()
 
 set(CMAKE_DEBUG_POSTFIX "${tag_toolset}${tag_mt}-${tag_rtdebug}d${tag_version}")
 set(CMAKE_RELEASE_POSTFIX "${tag_toolset}${tag_mt}${tag_version}")
+set(CMAKE_STATIC_LIBRARY_PREFIX "lib")
+set(CMAKE_IMPORT_LIBRARY_PREFIX "")
 
 
 file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/lib")
