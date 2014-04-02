@@ -10,8 +10,8 @@ set(test_list
   covariance
   droppable
   error_of
-  extended_p_square
-  extended_p_square_quantile
+  #extended_p_square
+  #extended_p_square_quantile
   external_accumulator
   external_weights
   kurtosis
@@ -34,7 +34,7 @@ set(test_list
   variance
   vector
   weighted_covariance
-  weighted_extended_p_square
+  #weighted_extended_p_square
   weighted_kurtosis
   weighted_mean
   weighted_median

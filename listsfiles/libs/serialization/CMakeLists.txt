@@ -41,7 +41,7 @@ add_library(boost_serialization
   src/xml_iarchive
   src/xml_oarchive
   src/xml_archive_exception
-  src/shared_ptr_helper
+  #src/shared_ptr_helper
   )
 
 target_include_directories(boost_serialization PUBLIC

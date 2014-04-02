@@ -34,7 +34,7 @@ target_link_libraries(boost_prg_exec_monitor PUBLIC
 add_library(boost_test_exec_monitor STATIC
   src/compiler_log_formatter.cpp
   src/debug.cpp
-  src/decorator.cpp
+  #src/decorator.cpp
   src/execution_monitor.cpp
   src/framework.cpp
   src/plain_report_formatter.cpp
@@ -43,7 +43,7 @@ add_library(boost_test_exec_monitor STATIC
   src/results_reporter.cpp
   src/test_main.cpp
   src/test_tools.cpp
-  src/test_tree.cpp
+  #src/test_tree.cpp
   src/unit_test_log.cpp
   src/unit_test_main.cpp
   src/unit_test_monitor.cpp
@@ -73,7 +73,7 @@ target_link_libraries(boost_test_exec_monitor PRIVATE
 add_library(boost_unit_test_framework
   src/compiler_log_formatter.cpp
   src/debug.cpp
-  src/decorator.cpp
+  #src/decorator.cpp
   src/exception_safety.cpp
   src/execution_monitor.cpp
   src/framework.cpp
@@ -84,7 +84,7 @@ add_library(boost_unit_test_framework
   src/results_collector.cpp
   src/results_reporter.cpp
   src/test_tools.cpp
-  src/test_tree.cpp
+  #src/test_tree.cpp
   src/unit_test_log.cpp
   src/unit_test_main.cpp
   src/unit_test_monitor.cpp
