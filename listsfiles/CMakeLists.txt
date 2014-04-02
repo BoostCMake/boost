@@ -4,6 +4,11 @@
 # See accompanying file LICENSE_1_0.txt or copy at
 #   http://www.boost.org/LICENSE_1_0.txt
 
+
+# Must enable C++ before detecting the toolset, to trigger compiler detection
+# http://www.cmake.org/pipermail/cmake/2011-November/047130.html
+ENABLE_LANGUAGE(CXX)
+
 # Toolset detection.
 if (MSVC60)
   set(BOOST_TOOLSET "vc6")
