@@ -11,6 +11,7 @@ ryppl_test_suite(
   )
 
 target_link_libraries(boostany-testdriver PRIVATE
+  boost::assert
   boost::any
   )
 

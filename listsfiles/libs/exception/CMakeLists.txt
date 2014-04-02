@@ -13,6 +13,7 @@ target_include_directories(boost_exception INTERFACE
   )
 
 target_link_libraries(boost_exception INTERFACE
+  boost::assert
   boost::detail
   boost::units
   boost::utility

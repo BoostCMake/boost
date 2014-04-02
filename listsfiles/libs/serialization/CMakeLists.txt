@@ -49,6 +49,7 @@ target_include_directories(boost_serialization PUBLIC
   )
 
 target_link_libraries(boost_serialization PUBLIC
+  boost::assert
   boost::array
   boost::config
   boost::detail

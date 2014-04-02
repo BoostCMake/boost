@@ -6,6 +6,7 @@ add_executable(boostcoroutine-test
   )
 
 target_link_libraries(boostcoroutine-test
+  boost::assert
   boost::unit_test_framework
   boost::coroutine
   boost::foreach

@@ -28,6 +28,7 @@ target_include_directories(boost_thread PUBLIC
   )
 
 target_link_libraries(boost_thread PUBLIC
+  boost::assert
   boost::atomic
   boost::algorithm
   boost::chrono

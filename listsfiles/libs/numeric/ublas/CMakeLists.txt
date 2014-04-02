@@ -13,6 +13,7 @@ target_include_directories(boost_ublas INTERFACE
   )
 
 target_link_libraries(boost_ublas INTERFACE
+  boost::assert
   boost::typeof
   )
 

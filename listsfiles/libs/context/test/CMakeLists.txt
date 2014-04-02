@@ -6,6 +6,7 @@ add_executable(boostcontext-test
   )
 
 target_link_libraries(boostcontext-test
+  boost::assert
   boost::unit_test_framework
   boost::context
   )

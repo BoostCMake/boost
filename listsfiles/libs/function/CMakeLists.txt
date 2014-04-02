@@ -13,6 +13,7 @@ target_include_directories(boost_function INTERFACE
   )
 
 target_link_libraries(boost_function INTERFACE
+  boost::assert
   boost::integer
   boost::smart_ptr
   )

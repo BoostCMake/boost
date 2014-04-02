@@ -18,6 +18,7 @@ add_library(boost_timer
 
 
 target_link_libraries(boost_timer PUBLIC
+  boost::assert
   boost::timer::header_only
   boost::chrono
   boost::io

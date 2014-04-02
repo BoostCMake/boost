@@ -16,6 +16,7 @@ target_include_directories(boost_graph PUBLIC
 target_link_libraries(boost_graph PUBLIC
   boost::any
   boost::algorithm
+  boost::assert
   boost::serialization
   boost::config
   boost::detail

@@ -13,6 +13,7 @@ target_include_directories(boost_atomic PUBLIC
   )
 
 target_link_libraries(boost_atomic PUBLIC
+  boost::assert
   boost::config
   boost::detail
   boost::type_traits

@@ -19,6 +19,7 @@ target_include_directories(boost_chrono PUBLIC
   )
 
 target_link_libraries(boost_chrono PUBLIC
+  boost::assert
   boost::exception
   boost::math::special_functions
   boost::system

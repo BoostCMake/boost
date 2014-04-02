@@ -13,6 +13,7 @@ target_include_directories(boost_spirit INTERFACE
   )
 
 target_link_libraries(boost_spirit INTERFACE
+  boost::assert
   boost::optional
   )
 

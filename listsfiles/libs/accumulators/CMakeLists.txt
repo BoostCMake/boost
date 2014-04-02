@@ -15,6 +15,7 @@ target_include_directories(boost_accumulators INTERFACE
   )
 
 target_link_libraries(boost_accumulators INTERFACE
+  boost::assert
   boost::fusion
   boost::parameter
   boost::ublas

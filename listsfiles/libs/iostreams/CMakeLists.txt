@@ -46,6 +46,7 @@ target_include_directories(boost_iostreams PUBLIC
 
 target_link_libraries(boost_iostreams PUBLIC
   ${link_libraries}
+  boost::assert
   boost::config
   boost::range
   boost::detail

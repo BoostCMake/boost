@@ -13,6 +13,7 @@ target_include_directories(boost_range INTERFACE
   )
 
 target_link_libraries(boost_range INTERFACE
+  boost::assert
   boost::concept_check
   boost::iterator
   )

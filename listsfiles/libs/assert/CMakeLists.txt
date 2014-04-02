@@ -2,25 +2,21 @@
 # See http://www.boost.org/LICENSE_1_0.txt
 
 cmake_minimum_required(VERSION 2.8.11)
-project(BoostFormat NONE)
+project(BoostAssert)
 
-add_library(boost_format INTERFACE)
-add_library(boost::format ALIAS boost_format)
-set_property(TARGET boost_format PROPERTY EXPORT_NAME format)
+add_subdirectory(test)
 
-target_include_directories(boost_format INTERFACE
+add_library(boost_assert INTERFACE)
+add_library(boost::assert ALIAS boost_assert)
+set_property(TARGET boost_assert PROPERTY EXPORT_NAME assert)
+
+target_include_directories(boost_assert INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  )
-
-target_link_libraries(boost_format INTERFACE
-  boost::assert
-  boost::optional
-  boost::smart_ptr
   )
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost_format EXPORT ${PROJECT_NAME}Targets
+install(TARGETS boost_assert EXPORT ${PROJECT_NAME}Targets
   INCLUDES DESTINATION include
   )
 
@@ -30,10 +26,7 @@ install(EXPORT ${PROJECT_NAME}Targets
   DESTINATION lib/cmake/${PROJECT_NAME}
   )
 
-write_config_file("${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Config.cmake"
-  Optional
-  SmartPtr
-  )
+write_config_file("${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Config.cmake")
 write_basic_package_version_file("${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}ConfigVersion.cmake"
   VERSION ${BOOST_VERSION}
   COMPATIBILITY AnyNewerVersion
@@ -45,6 +38,6 @@ install(FILES
   DESTINATION lib/cmake/${PROJECT_NAME}
 )
 
-export(TARGETS boost_format
+export(TARGETS boost_assert
   NAMESPACE boost::
   FILE ${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Targets.cmake)

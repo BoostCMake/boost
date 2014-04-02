@@ -13,6 +13,7 @@ target_include_directories(boost_conversion INTERFACE
   )
 
 target_link_libraries(boost_conversion INTERFACE
+  boost::assert
   boost::array
   boost::container
   boost::math::special_functions

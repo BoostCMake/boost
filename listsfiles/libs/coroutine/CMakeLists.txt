@@ -33,6 +33,7 @@ target_include_directories(boost_coroutine PUBLIC
   )
 
 target_link_libraries(boost_coroutine PUBLIC
+  boost::assert
   boost::context
   boost::system
   boost::type_traits

@@ -13,6 +13,7 @@ target_include_directories(boost_unordered INTERFACE
   )
 
 target_link_libraries(boost_unordered INTERFACE
+  boost::assert
   boost::move
   )
 

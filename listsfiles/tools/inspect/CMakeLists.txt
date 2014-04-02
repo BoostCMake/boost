@@ -22,6 +22,7 @@ add_executable(inspect
   )
 
 target_link_libraries(inspect PRIVATE
+  boost::assert
   boost::algorithm
   boost::conversion
   boost::filesystem

@@ -15,6 +15,7 @@ target_include_directories(boost_array INTERFACE
   )
 
 target_link_libraries(boost_array INTERFACE
+  boost::assert
   boost::exception
   boost::functional
   boost::utility

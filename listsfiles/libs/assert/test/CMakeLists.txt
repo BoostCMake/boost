@@ -2,19 +2,16 @@
 # See http://www.boost.org/LICENSE_1_0.txt
 
 set(test_list
-  basic
-# std
-# list_of
-  ptr_list_of
-  static_list_of
-  tuple_list_of
-# list_inserter
-  ptr_list_inserter
-  ptr_map_inserter
-# list_of_workaround
-  email_example
-  my_vector_example
-  multi_index_container
+        assert_test.cpp
+        current_function_test.cpp
+        verify_test.cpp
+        # expansion tests are in exp/ so that there is a backslash in the path on Windows
+        #exp/assert_exp_test.cpp
+        #exp/assert_msg_exp_test.cpp
+        #exp/verify_exp_test.cpp
+        #exp/verify_msg_exp_test.cpp
+        assert_test2.cpp
+        assert_msg_test2.cpp
   )
 
 set(test_targets)
@@ -23,7 +20,6 @@ foreach(test IN LISTS test_list)
   add_executable(${target} ${test})
   target_link_libraries(${target} PRIVATE
     boost::assert
-    boost::assign
     boost::unit_test_framework
     )
   list(APPEND test_targets ${target})

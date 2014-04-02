@@ -13,6 +13,7 @@ target_include_directories(boost_detail INTERFACE
   )
 
 target_link_libraries(boost_detail INTERFACE
+  boost::assert
   boost::bind
   boost::config
   boost::predef

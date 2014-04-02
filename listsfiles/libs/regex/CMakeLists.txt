@@ -37,6 +37,7 @@ target_include_directories(boost_regex PUBLIC
 target_link_libraries(boost_regex PUBLIC
   ${ICU_LIBRARIES}
   ${ICU_I18N_LIBRARIES}
+  boost::assert
   boost::config
   boost::detail
   boost::exception

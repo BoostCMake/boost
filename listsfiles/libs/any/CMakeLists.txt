@@ -15,6 +15,7 @@ target_include_directories(boost_any INTERFACE
   )
 
 target_link_libraries(boost_any INTERFACE
+  boost::assert
   boost::config
   boost::exception
   boost::static_assert

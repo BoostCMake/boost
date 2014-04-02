@@ -13,6 +13,7 @@ target_include_directories(boost_mpl INTERFACE
   )
 
 target_link_libraries(boost_mpl INTERFACE
+  boost::assert
   boost::preprocessor
   )
 

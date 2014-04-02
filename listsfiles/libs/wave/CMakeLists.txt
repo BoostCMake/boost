@@ -30,6 +30,7 @@ target_include_directories(boost_wave PUBLIC
   )
 
 target_link_libraries(boost_wave
+  boost::assert
   boost::thread
   boost::spirit
   boost::filesystem

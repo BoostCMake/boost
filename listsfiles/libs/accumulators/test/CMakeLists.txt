@@ -55,6 +55,7 @@ foreach(test IN LISTS test_list)
   set(target "${PROJECT_NAME}-test-${test}")
   add_executable(${target} ${test})
   target_link_libraries(${target} PRIVATE
+    boost::assert
     boost::accumulators
     boost::serialization
     boost::foreach

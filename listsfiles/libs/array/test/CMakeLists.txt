@@ -18,6 +18,7 @@ foreach(test IN LISTS tests_list)
   set(target "${PROJECT_NAME}-test-${test}")
   add_executable(${target} ${test})
   target_link_libraries(${target} PRIVATE
+    boost::assert
     boost::array
     boost::unit_test_framework
     )

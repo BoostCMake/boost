@@ -19,6 +19,7 @@ target_include_directories(boost_date_time PUBLIC
   )
 
 target_link_libraries(boost_date_time PRIVATE
+  boost::assert
   boost::config
   boost::conversion
   boost::concept_check

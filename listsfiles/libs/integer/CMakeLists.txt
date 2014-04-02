@@ -13,6 +13,7 @@ target_include_directories(boost_integer INTERFACE
   )
 
 target_link_libraries(boost_integer INTERFACE
+  boost::assert
   boost::static_assert
   )
 

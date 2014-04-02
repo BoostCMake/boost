@@ -13,6 +13,7 @@ target_include_directories(boost_algorithm INTERFACE
   )
 
 target_link_libraries(boost_algorithm INTERFACE
+  boost::assert
   boost::range
   )
 

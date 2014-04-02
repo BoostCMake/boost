@@ -21,6 +21,7 @@ target_include_directories(boost_prg_exec_monitor PUBLIC
   )
 
 target_link_libraries(boost_prg_exec_monitor PUBLIC
+  boost::assert
   boost::algorithm
   boost::config
   boost::detail
@@ -56,6 +57,7 @@ target_include_directories(boost_test_exec_monitor PUBLIC
   )
 
 target_link_libraries(boost_test_exec_monitor PRIVATE
+  boost::assert
   boost::conversion
   boost::algorithm
   boost::math::special_functions

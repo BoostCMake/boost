@@ -13,6 +13,7 @@ target_include_directories(boost_xpressive INTERFACE
   )
 
 target_link_libraries(boost_xpressive INTERFACE
+  boost::assert
   boost::proto
   )
 

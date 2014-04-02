@@ -22,6 +22,7 @@ target_include_directories(boost_graph_parallel PUBLIC
   )
 
 target_link_libraries(boost_graph_parallel PUBLIC
+  boost::assert
   boost::graph
   boost::mpi
   )

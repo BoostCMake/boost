@@ -20,6 +20,7 @@ target_include_directories(boost_filesystem PUBLIC
   )
 
 target_link_libraries(boost_filesystem PUBLIC
+  boost::assert
   boost::system
   boost::exception
   boost::functional

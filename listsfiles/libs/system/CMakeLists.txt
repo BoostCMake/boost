@@ -16,6 +16,7 @@ target_include_directories(boost_system PUBLIC
   )
 
 target_link_libraries(boost_system PUBLIC
+  boost::assert
   boost::config
   boost::detail
   boost::integer
