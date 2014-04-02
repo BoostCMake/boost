@@ -10,7 +10,7 @@
 ENABLE_LANGUAGE(CXX)
 
 # Must be set above synthesis of tag_version, CMAKE_xxx_POSTFIX, etc.
-set(BOOST_VERSION 1.5.4)
+set(BOOST_VERSION 1.56)
 
 # Toolset detection.
 if (MSVC60)
