@@ -4,7 +4,7 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostMPI CXX)
 
-find_package(MPI REQUIRED)
+#find_package(MPI REQUIRED)
 
 if(MSVC)
   add_definitions(
@@ -133,6 +133,6 @@ install(FILES
   DESTINATION lib/cmake/${PROJECT_NAME}
 )
 
-export(TARGETS 
+export(TARGETS
   NAMESPACE boost::
   FILE ${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Targets.cmake)

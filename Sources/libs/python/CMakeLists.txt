@@ -4,7 +4,7 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostPython CXX)
 
-find_package(PythonLibs REQUIRED)
+#find_package(PythonLibs REQUIRED)
 
 add_library(boost_python
   src/numeric.cpp
@@ -101,6 +101,6 @@ install(FILES
   DESTINATION lib/cmake/${PROJECT_NAME}
 )
 
-export(TARGETS 
+export(TARGETS
   NAMESPACE boost::
   FILE ${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Targets.cmake)

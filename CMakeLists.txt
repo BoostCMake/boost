@@ -19,6 +19,6 @@ if(EXISTS "${PROJECT_SOURCE_DIR}/Frameworks/boost")
     file(COPY "Frameworks/boost" DESTINATION "${CMAKE_BINARY_DIR}/Frameworks")
 endif()
 
-file(COPY "Sources/" DESTINATION "${CMAKE_BINARY_DIR}/boost")
+file(COPY "Sources/" DESTINATION "${CMAKE_BINARY_DIR}/Frameworks/boost")
 
-add_subdirectory("${CMAKE_BINARY_DIR}/boost" "${CMAKE_BINARY_DIR}/boost-build")
+add_subdirectory("${CMAKE_BINARY_DIR}/Frameworks/boost" "${CMAKE_BINARY_DIR}/boost-build")

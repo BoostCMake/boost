@@ -5,7 +5,7 @@ include(RypplTestSuite)
 
 ryppl_test_suite(
   RUN
-    ../any_test.cpp
+    any_test.cpp
   COMPILE_FAIL
     any_cast_cv_failed.cpp
   )

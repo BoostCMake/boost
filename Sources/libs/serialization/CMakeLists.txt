@@ -5,80 +5,81 @@ cmake_minimum_required(VERSION 2.8.11)
 project(BoostSerialization CXX)
 
 if(MSVC)
-  add_definitions(
-    /Gy
-    /wd4244 # converting 'std::streamsize' in 'size_t'
-    /D_CRT_SECURE_NO_WARNINGS
-    /D_SCL_SECURE_NO_WARNINGS
+    add_definitions(
+            /Gy
+            /wd4244 # converting 'std::streamsize' in 'size_t'
+            /D_CRT_SECURE_NO_WARNINGS
+            /D_SCL_SECURE_NO_WARNINGS
     )
 endif()
 
 add_library(boost_serialization
-  src/basic_archive
-  src/basic_iarchive
-  src/basic_iserializer
-  src/basic_oarchive
-  src/basic_oserializer
-  src/basic_pointer_iserializer
-  src/basic_pointer_oserializer
-  src/basic_serializer_map
-  src/basic_text_iprimitive
-  src/basic_text_oprimitive
-  src/basic_xml_archive
-  src/binary_iarchive
-  src/binary_oarchive
-  src/extended_type_info
-  src/extended_type_info_typeid
-  src/extended_type_info_no_rtti
-  src/polymorphic_iarchive
-  src/polymorphic_oarchive
-  src/stl_port
-  src/text_iarchive
-  src/text_oarchive
-  src/void_cast
-  src/archive_exception
-  src/xml_grammar
-  src/xml_iarchive
-  src/xml_oarchive
-  src/xml_archive_exception
-  src/shared_ptr_helper
-  )
+        src/basic_archive
+        src/basic_iarchive
+        src/basic_iserializer
+        src/basic_oarchive
+        src/basic_oserializer
+        src/basic_pointer_iserializer
+        src/basic_pointer_oserializer
+        src/basic_serializer_map
+        src/basic_text_iprimitive
+        src/basic_text_oprimitive
+        src/basic_xml_archive
+        src/binary_iarchive
+        src/binary_oarchive
+        src/extended_type_info
+        src/extended_type_info_typeid
+        src/extended_type_info_no_rtti
+        src/polymorphic_iarchive
+        src/polymorphic_oarchive
+        src/stl_port
+        src/text_iarchive
+        src/text_oarchive
+        src/void_cast
+        src/archive_exception
+        src/xml_grammar
+        src/xml_iarchive
+        src/xml_oarchive
+        src/xml_archive_exception
+        #  src/shared_ptr_helper
+        )
 
 target_include_directories(boost_serialization PUBLIC
-  "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
-  )
+        "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+        )
 
 target_link_libraries(boost_serialization PUBLIC
-  boost::assert
-  boost::array
-  boost::config
-  boost::detail
-  boost::spirit
-  boost::function
-  boost::preprocessor
-  boost::type_traits
-  boost::io
-  boost::iterator
-  boost::utility
-  boost::static_assert
-  boost::smart_ptr
-  )
+        boost::assert
+        boost::array
+        boost::config
+        boost::detail
+        boost::spirit
+        boost::function
+        boost::preprocessor
+        boost::type_traits
+        boost::io
+        boost::iterator
+        boost::utility
+        boost::smart_ptr
+        boost::static_assert
+        boost::system
+        )
 
 add_library(boost_wserialization
-  src/basic_text_wiprimitive
-  src/basic_text_woprimitive
-  src/text_wiarchive
-  src/text_woarchive
-  src/utf8_codecvt_facet
-  src/xml_wgrammar
-  src/xml_wiarchive
-  src/xml_woarchive
-  src/codecvt_null
-  )
+        src/basic_text_wiprimitive
+        src/basic_text_woprimitive
+        src/text_wiarchive
+        src/text_woarchive
+        src/utf8_codecvt_facet
+        src/xml_wgrammar
+        src/xml_wiarchive
+        src/xml_woarchive
+        src/codecvt_null
+        )
 
 target_link_libraries(boost_wserialization PUBLIC
-  boost_serialization
-  )
+        boost_serialization
+        )
 
 add_library(boost::serialization ALIAS boost_serialization)
 set_property(TARGET boost_serialization PROPERTY EXPORT_NAME serialization)
@@ -88,43 +89,43 @@ set_property(TARGET boost_wserialization PROPERTY EXPORT_NAME wserialization)
 install(DIRECTORY include/ DESTINATION include)
 
 install(TARGETS boost_serialization boost_wserialization
-  EXPORT ${PROJECT_NAME}Targets
-  RUNTIME DESTINATION bin
-  LIBRARY DESTINATION lib
-  ARCHIVE DESTINATION lib
-  )
+        EXPORT ${PROJECT_NAME}Targets
+        RUNTIME DESTINATION bin
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib
+        )
 
 install(EXPORT ${PROJECT_NAME}Targets
-  FILE ${PROJECT_NAME}Targets.cmake
-  NAMESPACE boost::
-  DESTINATION lib/cmake/${PROJECT_NAME}
-  )
+        FILE ${PROJECT_NAME}Targets.cmake
+        NAMESPACE boost::
+        DESTINATION lib/cmake/${PROJECT_NAME}
+        )
 
 write_config_file("${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Config.cmake"
-  Array
-  Config
-  Detail
-  Spirit
-  Function
-  Preprocessor
-  TypeTraits
-  IO
-  Iterator
-  Utility
-  StaticAssert
-  SmartPtr
-  )
+        Array
+        Config
+        Detail
+        Spirit
+        Function
+        Preprocessor
+        TypeTraits
+        IO
+        Iterator
+        Utility
+        StaticAssert
+        SmartPtr
+        )
 write_basic_package_version_file("${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}ConfigVersion.cmake"
-  VERSION ${BOOST_VERSION}
-  COMPATIBILITY AnyNewerVersion
-  )
+        VERSION ${BOOST_VERSION}
+        COMPATIBILITY AnyNewerVersion
+        )
 
 install(FILES
-    "${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Config.cmake"
-    "${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}ConfigVersion.cmake"
-  DESTINATION lib/cmake/${PROJECT_NAME}
-)
+        "${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Config.cmake"
+        "${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}ConfigVersion.cmake"
+        DESTINATION lib/cmake/${PROJECT_NAME}
+        )
 
-export(TARGETS 
-  NAMESPACE boost::
-  FILE ${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Targets.cmake)
+export(TARGETS
+        NAMESPACE boost::
+        FILE ${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Targets.cmake)
