@@ -15,7 +15,7 @@ if(NOT EXISTS "${PROJECT_SOURCE_DIR}/Frameworks/boost")
             )
 endif()
 
-if(NOT EXISTS "${CMAKE_BINARY_DIR}/Frameworks/boost")
+if(NOT EXISTS "${CMAKE_BINARY_DIR}/Frameworks/boost/CMakeLists.txt")
     file(COPY "Frameworks/boost" DESTINATION "${CMAKE_BINARY_DIR}/Frameworks")
 endif()
 

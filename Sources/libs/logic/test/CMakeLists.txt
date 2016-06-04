@@ -8,10 +8,9 @@ ryppl_find_and_use_package(BoostLogic)
 ryppl_find_and_use_package(BoostTest)
 
 ryppl_test_suite(
-  RUN
-    tribool_test.cpp
-    tribool_rename_test.cpp
-    tribool_io_test.cpp
-  NO_SINGLE_TARGET
-  )
-  
+        RUN
+        tribool_test.cpp
+        tribool_rename_test.cpp
+        tribool_io_test.cpp
+        NO_SINGLE_TARGET
+)
