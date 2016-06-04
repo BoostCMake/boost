@@ -8,7 +8,7 @@ include_directories(include)
 
 add_library(boost_system
   src/error_code.cpp
-  src/local_free_on_destruction.hpp
+#  src/local_free_on_destruction.hpp
   )
 
 target_include_directories(boost_system PUBLIC

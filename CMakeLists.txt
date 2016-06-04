@@ -11,11 +11,11 @@ if(NOT EXISTS "${PROJECT_SOURCE_DIR}/Frameworks/boost")
     execute_process(COMMAND
             ${CMAKE_SOURCE_DIR}/shallow-clone develop
             https://github.com/boostorg/boost.git
-            ${CMAKE_BINARY_DIR}/boost
+            ${CMAKE_BINARY_DIR}/Frameworks/boost
             )
 endif()
 
-if(EXISTS "${PROJECT_SOURCE_DIR}/Frameworks/boost")
+if(NOT EXISTS "${CMAKE_BINARY_DIR}/Frameworks/boost")
     file(COPY "Frameworks/boost" DESTINATION "${CMAKE_BINARY_DIR}/Frameworks")
 endif()
 

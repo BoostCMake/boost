@@ -33,8 +33,9 @@ target_link_libraries(boost_prg_exec_monitor PUBLIC
 
 add_library(boost_test_exec_monitor STATIC
         src/compiler_log_formatter.cpp
+        src/cpp_main.cpp
         src/debug.cpp
-        #  src/decorator.cpp
+        src/decorator.cpp
         src/execution_monitor.cpp
         src/framework.cpp
         src/plain_report_formatter.cpp
@@ -43,7 +44,7 @@ add_library(boost_test_exec_monitor STATIC
         src/results_reporter.cpp
         src/test_main.cpp
         src/test_tools.cpp
-        #  src/test_tree.cpp
+        src/test_tree.cpp
         src/unit_test_log.cpp
         src/unit_test_main.cpp
         src/unit_test_monitor.cpp
@@ -72,24 +73,21 @@ target_link_libraries(boost_test_exec_monitor PRIVATE
 
 add_library(boost_unit_test_framework
         src/compiler_log_formatter.cpp
+        src/cpp_main.cpp
         src/debug.cpp
-        #  src/decorator.cpp
-        src/exception_safety.cpp
+        src/decorator.cpp
         src/execution_monitor.cpp
         src/framework.cpp
-        src/interaction_based.cpp
-        src/logged_expectations.cpp
         src/plain_report_formatter.cpp
         src/progress_monitor.cpp
         src/results_collector.cpp
         src/results_reporter.cpp
         src/test_tools.cpp
-        #  src/test_tree.cpp
+        src/test_tree.cpp
         src/unit_test_log.cpp
         src/unit_test_main.cpp
         src/unit_test_monitor.cpp
         src/unit_test_parameters.cpp
-        src/unit_test_suite.cpp
         src/xml_log_formatter.cpp
         src/xml_report_formatter.cpp
         )
