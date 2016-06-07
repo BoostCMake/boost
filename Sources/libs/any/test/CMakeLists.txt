@@ -13,6 +13,7 @@ ryppl_test_suite(
 target_link_libraries(boostany-testdriver PRIVATE
   boost::assert
   boost::any
+  boost::type_index
   )
 
 add_custom_target(${PROJECT_NAME}-test

@@ -2,25 +2,19 @@
 # See http://www.boost.org/LICENSE_1_0.txt
 
 cmake_minimum_required(VERSION 2.8.11)
-project(BoostSpirit NONE)
+project(BoostTypeIndex)
 
-add_library(boost_spirit INTERFACE)
-add_library(boost::spirit ALIAS boost_spirit)
-set_property(TARGET boost_spirit PROPERTY EXPORT_NAME spirit)
+add_library(boost_type_index INTERFACE)
+add_library(boost::type_index ALIAS boost_type_index)
+set_property(TARGET boost_type_index PROPERTY EXPORT_NAME type_index)
 
-target_include_directories(boost_spirit INTERFACE
-  "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
-  )
-
-target_link_libraries(boost_spirit INTERFACE
-  boost::assert
-  boost::foreach
-  boost::optional
+target_include_directories(boost_type_index INTERFACE
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   )
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost_spirit EXPORT ${PROJECT_NAME}Targets
+install(TARGETS boost_type_index EXPORT ${PROJECT_NAME}Targets
   INCLUDES DESTINATION include
   )
 
@@ -31,7 +25,7 @@ install(EXPORT ${PROJECT_NAME}Targets
   )
 
 write_config_file("${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Config.cmake"
-  Optional
+  TypeTraits
   )
 write_basic_package_version_file("${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}ConfigVersion.cmake"
   VERSION ${BOOST_VERSION}
@@ -44,6 +38,7 @@ install(FILES
   DESTINATION lib/cmake/${PROJECT_NAME}
 )
 
-export(TARGETS boost_spirit
+export(TARGETS boost_type_index
   NAMESPACE boost::
   FILE ${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Targets.cmake)
+

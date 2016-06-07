@@ -27,6 +27,7 @@ foreach(test IN LISTS test_list)
             boost::circular_buffer
             boost::foreach
             boost::move
+            boost::intrusive
             boost::multi_index
             boost::ptr_container
             boost::serialization

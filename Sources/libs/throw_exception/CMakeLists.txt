@@ -2,27 +2,23 @@
 # See http://www.boost.org/LICENSE_1_0.txt
 
 cmake_minimum_required(VERSION 2.8.11)
-project(BoostBind)
+project(BoostThrowException)
 
-add_subdirectory(test)
+add_library(boost_throw_exception INTERFACE)
+add_library(boost::throw_exception ALIAS boost_throw_exception)
+set_property(TARGET boost_throw_exception PROPERTY EXPORT_NAME throw_exception)
 
-add_library(boost_bind INTERFACE)
-add_library(boost::bind ALIAS boost_bind)
-set_property(TARGET boost_bind PROPERTY EXPORT_NAME bind)
-
-target_include_directories(boost_bind INTERFACE
+target_include_directories(boost_throw_exception INTERFACE
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     )
 
-target_link_libraries(boost_bind INTERFACE
+target_link_libraries(boost_throw_exception INTERFACE
     boost::core
-    boost::move
-    boost::throw_exception
     )
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost_bind EXPORT ${PROJECT_NAME}Targets
+install(TARGETS boost_throw_exception EXPORT ${PROJECT_NAME}Targets
     INCLUDES DESTINATION include
     )
 
@@ -34,8 +30,6 @@ install(EXPORT ${PROJECT_NAME}Targets
 
 write_config_file("${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Config.cmake"
     Core
-    Move
-    ThrowException
     )
 write_basic_package_version_file("${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}ConfigVersion.cmake"
     VERSION ${BOOST_VERSION}
@@ -48,6 +42,8 @@ install(FILES
     DESTINATION lib/cmake/${PROJECT_NAME}
     )
 
-export(TARGETS boost_bind
+export(TARGETS boost_throw_exception
     NAMESPACE boost::
     FILE ${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Targets.cmake)
+
+

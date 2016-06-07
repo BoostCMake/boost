@@ -20,6 +20,7 @@ target_link_libraries(boost_any INTERFACE
   boost::exception
   boost::static_assert
   boost::type_traits
+  boost::type_index
   )
 
 install(DIRECTORY include/ DESTINATION include)

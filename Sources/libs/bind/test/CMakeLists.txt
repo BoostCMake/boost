@@ -46,6 +46,7 @@ foreach(test IN LISTS test_list)
             boost::assert
             boost::bind
             boost::config
+            boost::core
             boost::exception
             boost::function
             boost::mpl

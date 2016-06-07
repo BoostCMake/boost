@@ -85,6 +85,7 @@ function(add_math_library name suffix)
             boost::config
             boost::detail
             boost::math::special_functions
+            boost::lexical_cast
             boost::format
             boost::fusion
             boost::type_traits

@@ -31,7 +31,9 @@ target_link_libraries(boost_program_options PRIVATE
   boost::concept_check
   boost::conversion
   boost::function
+  boost::lexical_cast
   boost::tokenizer
+  boost::type_index
   )
 
 add_library(boost::program_options ALIAS boost_program_options)

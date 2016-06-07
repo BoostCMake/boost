@@ -26,6 +26,7 @@ target_link_libraries(inspect PRIVATE
   boost::algorithm
   boost::conversion
   boost::filesystem
+  boost::lexical_cast
   boost::regex
   )
 

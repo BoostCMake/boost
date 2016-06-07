@@ -13,6 +13,7 @@ add_executable(auto_index
 
 target_link_libraries(auto_index PRIVATE
   boost::assert
+  boost::align
   boost::algorithm
   boost::program_options
   boost::filesystem

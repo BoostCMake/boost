@@ -9,13 +9,13 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/Modules")
 if(NOT EXISTS "${PROJECT_SOURCE_DIR}/Frameworks/boost")
     find_package(Git REQUIRED)
     execute_process(COMMAND
-            ${CMAKE_SOURCE_DIR}/shallow-clone develop
-            https://github.com/boostorg/boost.git
-            ${CMAKE_BINARY_DIR}/Frameworks/boost
-            )
+        ${CMAKE_SOURCE_DIR}/shallow-clone develop
+        https://github.com/boostorg/boost.git
+        ${CMAKE_BINARY_DIR}/Frameworks/boost
+        )
 endif()
 
-if(NOT EXISTS "${CMAKE_BINARY_DIR}/Frameworks/boost/CMakeLists.txt")
+if(NOT EXISTS "${CMAKE_BINARY_DIR}/Frameworks/boost")
     file(COPY "Frameworks/boost" DESTINATION "${CMAKE_BINARY_DIR}/Frameworks")
 endif()
 

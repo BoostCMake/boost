@@ -67,13 +67,13 @@ target_link_libraries(boost_test_exec_monitor PRIVATE
         boost::timer::header_only
         boost::function
         boost::type_traits
+        boost::move
         boost::io
         boost::optional
         )
 
 add_library(boost_unit_test_framework
-        src/compiler_log_formatter.cpp
-        src/cpp_main.cpp
+        src/compiler_log_formatter.cpp 
         src/debug.cpp
         src/decorator.cpp
         src/execution_monitor.cpp
@@ -106,6 +106,7 @@ target_link_libraries(boost_unit_test_framework PUBLIC
         boost::function
         boost::type_traits
         boost::iterator
+        boost::move
         boost::io
         boost::optional
         boost::smart_ptr
@@ -156,6 +157,6 @@ install(FILES
         DESTINATION lib/cmake/${PROJECT_NAME}
         )
 
-export(TARGETS
+export(TARGETS boost_unit_test_framework
         NAMESPACE boost::
         FILE ${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Targets.cmake)

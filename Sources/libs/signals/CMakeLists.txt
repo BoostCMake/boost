@@ -25,12 +25,14 @@ target_include_directories(boost_signals PUBLIC
 
 target_link_libraries(boost_signals PUBLIC
   boost::assert
+  boost::align
   boost::any
   boost::config
   boost::detail
   boost::exception
   boost::function
   boost::type_traits
+  boost::type_index
   boost::iterator
   )
 

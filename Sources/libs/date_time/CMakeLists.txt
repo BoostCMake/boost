@@ -25,6 +25,7 @@ target_link_libraries(boost_date_time PRIVATE
   boost::concept_check
   boost::detail
   boost::math::special_functions
+  boost::lexical_cast
   boost::type_traits
   boost::integer
   boost::smart_ptr
