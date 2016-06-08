@@ -4,7 +4,7 @@ project(BoostCMake NONE)
 enable_testing()
 
 message(STATUS "Using CMake ${CMAKE_VERSION}")
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/Modules")
+list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/Modules")
 
 if(NOT EXISTS "${PROJECT_SOURCE_DIR}/Frameworks/boost")
     find_package(Git REQUIRED)
