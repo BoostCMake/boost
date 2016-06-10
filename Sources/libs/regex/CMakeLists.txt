@@ -26,7 +26,7 @@ add_library(boost_regex
     src/w32_regex_traits.cpp
     src/wc_regex_traits.cpp
     src/wide_posix_api.cpp
-    src/winstances.cpp 
+    src/winstances.cpp
     src/usinstances.cpp
     )
 
@@ -88,6 +88,6 @@ install(FILES
     DESTINATION lib/cmake/${PROJECT_NAME}
     )
 
-export(TARGETS 
+export(TARGETS boost_regex
     NAMESPACE boost::
     FILE ${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Targets.cmake)

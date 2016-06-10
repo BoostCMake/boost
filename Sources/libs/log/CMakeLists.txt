@@ -25,7 +25,7 @@ if(UNIX)
     endif()
 endif()
 
-list(APPEND SOURCES_LIST 
+list(APPEND SOURCES_LIST
     src/attribute_name.cpp
     src/attribute_set.cpp
     src/attribute_value_set.cpp
@@ -104,7 +104,7 @@ list(APPEND CURRENT_TARGET_LIBRARIES
     boost::random
     boost::xpressive
     boost::type_index
-    boost::variant    
+    boost::variant
     )
 
 if (WIN32)
@@ -114,7 +114,7 @@ if (WIN32)
         ws2_32
         mswsock
         )
-elseif(UNIX)
+elseif(UNIX AND NOT APPLE)
     list(APPEND CURRENT_TARGET_LIBRARIES
         rt
         socket
@@ -178,6 +178,6 @@ install(FILES
     DESTINATION lib/cmake/${PROJECT_NAME}
     )
 
-export(TARGETS
+export(TARGETS boost_log
     NAMESPACE boost::
     FILE ${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Targets.cmake)
