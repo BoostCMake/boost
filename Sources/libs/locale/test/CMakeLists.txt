@@ -4,7 +4,6 @@
 include(Ryppl)
 include(RypplTestSuite)
 
-
 add_definitions(-DBOOST_LOCALE_DYN_LINK=1)
 
 ryppl_test_suite(

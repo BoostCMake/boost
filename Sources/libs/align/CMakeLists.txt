@@ -4,7 +4,9 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostAlign)
 
-add_subdirectory(test)
+if(BUILD_UNIT_TESTS)
+    add_subdirectory(test)
+endif()
 
 add_library(boost_align INTERFACE)
 add_library(boost::align ALIAS boost_align)

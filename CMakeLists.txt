@@ -1,7 +1,14 @@
 cmake_minimum_required(VERSION 2.8.11 FATAL_ERROR)
+cmake_policy(SET CMP0042 NEW)
+
 project(BoostCMake NONE)
 
-enable_testing()
+option(BUILD_UNIT_TESTS "Build unit tests" FALSE)
+option(BUILD_SHARED_LIBRARIES "Build shared libraries" TRUE)
+
+if(BUILD_UNIT_TESTS)
+    enable_testing()
+endif()
 
 message(STATUS "Using CMake ${CMAKE_VERSION}")
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/Modules")

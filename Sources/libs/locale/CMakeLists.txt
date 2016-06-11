@@ -2,6 +2,8 @@
 # See http://www.boost.org/LICENSE_1_0.txt
 
 cmake_minimum_required(VERSION 2.8.11)
+cmake_policy(SET CMP0042 NEW)
+
 project(BoostLocale CXX)
 
 find_package(Iconv)
@@ -176,9 +178,15 @@ list(APPEND tests
     test/test_generator.cpp
     )
 
-add_library(boost_locale
-    ${sources}
-    )
+if(BUILD_SHARED_LIBRARIES)
+    add_library(boost_locale SHARED
+        ${sources}
+        )
+else()
+    add_library(boost_locale STATIC
+        ${sources}
+        )
+endif()
 
 target_include_directories(boost_locale PUBLIC
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"

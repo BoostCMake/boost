@@ -2,14 +2,26 @@
 # See http://www.boost.org/LICENSE_1_0.txt
 
 cmake_minimum_required(VERSION 2.8.11)
+cmake_policy(SET CMP0042 NEW)
+
 project(BoostSystem CXX)
 
 include_directories(include)
 
-add_library(boost_system
-  src/error_code.cpp
-#  src/local_free_on_destruction.hpp
-  )
+list(APPEND CURRENT_TARGET_SOURCES
+   src/error_code.cpp
+#  src/local_free_on_destruction.hpp 
+    )
+
+if(BUILD_SHARED_LIBRARIES)
+    add_library(boost_system SHARED
+        ${CURRENT_TARGET_SOURCES}
+        )
+else()
+    add_library(boost_system STATIC
+        ${CURRENT_TARGET_SOURCES}
+        )
+endif()
 
 target_include_directories(boost_system PUBLIC
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"

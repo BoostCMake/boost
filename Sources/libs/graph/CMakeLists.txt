@@ -2,12 +2,24 @@
 # See http://www.boost.org/LICENSE_1_0.txt
 
 cmake_minimum_required(VERSION 2.8.11)
+cmake_policy(SET CMP0042 NEW)
+
 project(BoostGraph CXX)
 
-add_library(boost_graph
+list(APPEND CURRENT_TARGET_SOURCES
     src/read_graphviz_new.cpp
     src/graphml.cpp
     )
+
+if(BUILD_SHARED_LIBRARIES)
+    add_library(boost_graph SHARED
+        ${CURRENT_TARGET_SOURCES}
+        )
+else()
+    add_library(boost_graph STATIC
+        ${CURRENT_TARGET_SOURCES}
+        )
+endif()
 
 if(CXX11_FOUND)
     set_property(TARGET boost_graph PROPERTY CXX_STANDARD 11)

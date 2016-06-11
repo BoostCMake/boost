@@ -4,7 +4,9 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostArray)
 
-add_subdirectory(test)
+if(BUILD_UNIT_TESTS)
+    add_subdirectory(test)
+endif()
 
 add_library(boost_array INTERFACE)
 add_library(boost::array ALIAS boost_array)

@@ -2,16 +2,16 @@
 # See http://www.boost.org/LICENSE_1_0.txt
 
 set(test_list
-        assert_test.cpp
-        current_function_test.cpp
-        verify_test.cpp
+        assert_test
+        current_function_test
+        verify_test
         # expansion tests are in exp/ so that there is a backslash in the path on Windows
         #exp/assert_exp_test.cpp
         #exp/assert_msg_exp_test.cpp
         #exp/verify_exp_test.cpp
         #exp/verify_msg_exp_test.cpp
-        assert_test2.cpp
-        assert_msg_test2.cpp
+        assert_test2
+        assert_msg_test2
   )
 
 set(test_targets)

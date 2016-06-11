@@ -2,6 +2,8 @@
 # See http://www.boost.org/LICENSE_1_0.txt
 
 cmake_minimum_required(VERSION 2.8.11)
+cmake_policy(SET CMP0042 NEW)
+
 project(BoostRegex CXX)
 
 #find_package(ICU)
@@ -10,7 +12,7 @@ project(BoostRegex CXX)
 #    include_directories(${ICU_INCLUDE_DIR})
 #endif()
 
-add_library(boost_regex
+list(APPEND CURRENT_TARGET_SOURCES
     src/c_regex_traits.cpp
     src/cpp_regex_traits.cpp
     src/cregex.cpp
@@ -29,6 +31,16 @@ add_library(boost_regex
     src/winstances.cpp
     src/usinstances.cpp
     )
+
+if(BUILD_SHARED_LIBRARIES)
+    add_library(boost_regex SHARED
+        ${CURRENT_TARGET_SOURCES}
+        )
+else()
+    add_library(boost_regex STATIC
+        ${CURRENT_TARGET_SOURCES}
+        )
+endif()
 
 target_include_directories(boost_regex PUBLIC
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"

@@ -2,6 +2,8 @@
 # See http://www.boost.org/LICENSE_1_0.txt
 
 cmake_minimum_required(VERSION 2.8.11)
+cmake_policy(SET CMP0042 NEW)
+
 project(BoostLog CXX)
 
 if(MSVC)
@@ -69,7 +71,11 @@ if (WIN32)
         )
 endif()
 
-add_library(boost_log ${SOURCES_LIST})
+if(BUILD_SHARED_LIBRARIES)
+    add_library(boost_log SHARED ${SOURCES_LIST})
+else()
+    add_library(boost_log STATIC ${SOURCES_LIST})
+endif()
 
 target_include_directories(boost_log PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

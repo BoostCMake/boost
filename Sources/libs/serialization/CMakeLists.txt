@@ -2,6 +2,8 @@
 # See http://www.boost.org/LICENSE_1_0.txt
 
 cmake_minimum_required(VERSION 2.8.11)
+cmake_policy(SET CMP0042 NEW)
+
 project(BoostSerialization CXX)
 
 if(MSVC)
@@ -13,7 +15,7 @@ if(MSVC)
         )
 endif()
 
-add_library(boost_serialization
+list(APPEND CURRENT_TARGET_SOURCES
     src/basic_archive
     src/basic_iarchive
     src/basic_iserializer
@@ -43,6 +45,16 @@ add_library(boost_serialization
     src/xml_archive_exception
     #  src/shared_ptr_helper
     )
+
+if(BUILD_SHARED_LIBRARIES)
+    add_library(boost_serialization SHARED
+        ${CURRENT_TARGET_SOURCES}
+        )
+else()
+    add_library(boost_serialization STATIC
+        ${CURRENT_TARGET_SOURCES}
+        )    
+endif()
 
 target_include_directories(boost_serialization PUBLIC
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"

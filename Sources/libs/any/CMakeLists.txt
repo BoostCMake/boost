@@ -4,7 +4,9 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostAny)
 
-add_subdirectory(test)
+if(BUILD_UNIT_TESTS)
+    add_subdirectory(test)
+endif()
 
 add_library(boost_any INTERFACE)
 add_library(boost::any ALIAS boost_any)

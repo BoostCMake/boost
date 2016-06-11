@@ -4,7 +4,9 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostContext ASM CXX)
 
-add_subdirectory(test)
+if(BUILD_UNIT_TESTS)
+    add_subdirectory(test)
+endif()
 
 set(abi
   aapcs
