@@ -10,7 +10,6 @@ if(BUILD_UNIT_TESTS)
     enable_testing()
 endif()
 
-message(STATUS "Using CMake ${CMAKE_VERSION}")
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/Modules")
 
 if(NOT EXISTS "${PROJECT_SOURCE_DIR}/Frameworks/boost")
