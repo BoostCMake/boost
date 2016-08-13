@@ -18,8 +18,6 @@ else()
     set(BOOST_LOCALE_NO_ICU ON)
 endif()
 
-set(BOOST_LOCALE_NO_ICU ON)
-
 if(APPLE OR "${CMAKE_SYSTEM_NAME}" STREQUAL "Linux")
     option(BOOST_LOCALE_NO_POSIX_BACKEND "Disable POSIX backend" OFF)
 else()
@@ -180,8 +178,8 @@ add_library(boost_locale
     ${sources}
     )
 
-target_include_directories(boost_locale PUBLIC
-    "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+target_include_directories(boost_locale BEFORE PUBLIC 
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     )
 
 target_link_libraries(boost_locale PRIVATE
@@ -225,6 +223,6 @@ install(FILES
     DESTINATION lib/cmake/${PROJECT_NAME}
     )
 
-export(TARGETS 
+export(TARGETS boost_locale
     NAMESPACE boost::
     FILE ${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Targets.cmake)

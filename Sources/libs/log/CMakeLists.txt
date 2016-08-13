@@ -97,6 +97,7 @@ list(APPEND CURRENT_TARGET_LIBRARIES
     boost::exception
     boost::regex
     boost::thread
+    boost::locale
     boost::spirit
     boost::system
     boost::phoenix

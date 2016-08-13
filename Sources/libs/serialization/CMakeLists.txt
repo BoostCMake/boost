@@ -58,6 +58,7 @@ target_link_libraries(boost_serialization PUBLIC
     boost::function
     boost::preprocessor
     boost::type_traits
+    boost::type_index
     boost::io
     boost::move
     boost::iterator
@@ -116,6 +117,7 @@ write_config_file("${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}
     Function
     Preprocessor
     TypeTraits
+    TypeIndex
     IO
     Iterator
     Utility

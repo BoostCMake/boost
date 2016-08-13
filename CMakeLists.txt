@@ -1,9 +1,16 @@
 cmake_minimum_required(VERSION 2.8.11 FATAL_ERROR)
+cmake_policy(SET CMP0042 NEW)
+
 project(BoostCMake NONE)
 
-enable_testing()
+option(BUILD_UNIT_TESTS "Build unit tests" FALSE)
+option(BUILD_SHARED_LIBRARIES "Build shared libraries" TRUE)
+set(APPLE_SIGN_IDENTITY "" CACHE STRING "Sign identity name")
 
-message(STATUS "Using CMake ${CMAKE_VERSION}")
+if(BUILD_UNIT_TESTS)
+    enable_testing()
+endif()
+
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/Modules")
 
 if(NOT EXISTS "${PROJECT_SOURCE_DIR}/Frameworks/boost")

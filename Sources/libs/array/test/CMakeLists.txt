@@ -9,7 +9,6 @@ set(tests_list
   array4
   array5
   array6
-#  array7
   array_hash
   )
 

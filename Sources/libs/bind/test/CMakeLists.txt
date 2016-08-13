@@ -50,6 +50,7 @@ foreach(test IN LISTS test_list)
             boost::exception
             boost::function
             boost::mpl
+            boost::type_index
             boost::smart_ptr
             boost::utility
             )
