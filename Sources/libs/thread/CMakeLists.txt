@@ -6,23 +6,34 @@ project(BoostThread)
 
 find_package(Threads)
 
+list(APPEND sources
+        src/future.cpp
+        src/tss_null.cpp
+        )
+
 if(CMAKE_USE_WIN32_THREADS_INIT)
-    set(sources
+    list(APPEND sources
             src/win32/thread.cpp
             src/win32/tss_dll.cpp
             src/win32/tss_pe.cpp
             src/win32/gettickcount64.cpp
             )
 else()
-    set(sources
+    list(APPEND sources
             src/pthread/thread.cpp
             src/pthread/once.cpp
             )
 endif()
 
-add_library(boost_thread
-        ${sources}
-        )
+if(BUILD_SHARED_LIBRARIES)
+    add_library(boost_thread SHARED
+            ${sources}
+            )
+else()
+    add_library(boost_thread STATIC
+            ${sources}
+            )
+endif()
 
 target_include_directories(boost_thread PUBLIC
         "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
