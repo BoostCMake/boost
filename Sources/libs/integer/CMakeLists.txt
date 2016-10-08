@@ -9,40 +9,40 @@ add_library(boost::integer ALIAS boost_integer)
 set_property(TARGET boost_integer PROPERTY EXPORT_NAME integer)
 
 target_include_directories(boost_integer INTERFACE
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  )
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        )
 
 target_link_libraries(boost_integer INTERFACE
-  boost::assert
-  boost::static_assert
-  )
+        boost::assert
+        boost::static_assert
+        )
 
 install(DIRECTORY include/ DESTINATION include)
 
 install(TARGETS boost_integer EXPORT ${PROJECT_NAME}Targets
-  INCLUDES DESTINATION include
-  )
+        INCLUDES DESTINATION include
+        )
 
 install(EXPORT ${PROJECT_NAME}Targets
-  FILE ${PROJECT_NAME}Targets.cmake
-  NAMESPACE boost::
-  DESTINATION lib/cmake/${PROJECT_NAME}
-  )
+        FILE ${PROJECT_NAME}Targets.cmake
+        NAMESPACE boost::
+        DESTINATION lib/cmake/${PROJECT_NAME}
+        )
 
 write_config_file("${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Config.cmake"
-  StaticAssert
-  )
+        StaticAssert
+        )
 write_basic_package_version_file("${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}ConfigVersion.cmake"
-  VERSION ${BOOST_VERSION}
-  COMPATIBILITY AnyNewerVersion
-  )
+        VERSION ${BOOST_VERSION}
+        COMPATIBILITY AnyNewerVersion
+        )
 
 install(FILES
-    "${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Config.cmake"
-    "${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}ConfigVersion.cmake"
-  DESTINATION lib/cmake/${PROJECT_NAME}
-)
+        "${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Config.cmake"
+        "${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}ConfigVersion.cmake"
+        DESTINATION lib/cmake/${PROJECT_NAME}
+        )
 
 export(TARGETS boost_integer
-  NAMESPACE boost::
-  FILE ${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Targets.cmake)
+        NAMESPACE boost::
+        FILE ${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Targets.cmake)

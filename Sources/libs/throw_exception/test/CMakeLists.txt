@@ -12,14 +12,14 @@ ryppl_find_and_use_package(BoostDetail)
 ryppl_find_and_use_package(BoostTest)
 
 ryppl_test_suite(
-    RUN
-    throw_exception_no_both_test.cpp
-    throw_exception_no_exceptions_test.cpp
-    throw_exception_no_integration_test.cpp
-    throw_exception_test.cpp    
+        RUN
+        throw_exception_no_both_test.cpp
+        throw_exception_no_exceptions_test.cpp
+        throw_exception_no_integration_test.cpp
+        throw_exception_test.cpp
 
-    COMPILE_FAIL
-    throw_exception_fail.cpp
-    
-    NO_SINGLE_TARGET
-    )
+        COMPILE_FAIL
+        throw_exception_fail.cpp
+
+        NO_SINGLE_TARGET
+)

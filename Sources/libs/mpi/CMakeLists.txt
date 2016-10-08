@@ -7,132 +7,132 @@ project(BoostMPI CXX)
 #find_package(MPI REQUIRED)
 
 if(MSVC)
-  add_definitions(
-    /D_SCL_SECURE_NO_WARNINGS
-    /wd4251 # class needs to have dll-interface to be used by clients
-    /wd4275 # non dll-interface class used as base for dll-interface class
-    /wd4996 # 'strdup': The POSIX name for this item is deprecated.
+    add_definitions(
+            /D_SCL_SECURE_NO_WARNINGS
+            /wd4251 # class needs to have dll-interface to be used by clients
+            /wd4275 # non dll-interface class used as base for dll-interface class
+            /wd4996 # 'strdup': The POSIX name for this item is deprecated.
     )
 endif()
 
 add_library(boost_mpi
-  src/broadcast.cpp
-  src/communicator.cpp
-  src/computation_tree.cpp
-  src/content_oarchive.cpp
-  src/environment.cpp
-  src/exception.cpp
-  src/graph_communicator.cpp
-  src/group.cpp
-  src/intercommunicator.cpp
-  src/mpi_datatype_cache.cpp
-  src/mpi_datatype_oarchive.cpp
-  src/packed_iarchive.cpp
-  src/packed_oarchive.cpp
-  src/packed_skeleton_iarchive.cpp
-  src/packed_skeleton_oarchive.cpp
-  src/point_to_point.cpp
-  src/request.cpp
-  src/text_skeleton_oarchive.cpp
-  src/timer.cpp
-  )
+        src/broadcast.cpp
+        src/communicator.cpp
+        src/computation_tree.cpp
+        src/content_oarchive.cpp
+        src/environment.cpp
+        src/exception.cpp
+        src/graph_communicator.cpp
+        src/group.cpp
+        src/intercommunicator.cpp
+        src/mpi_datatype_cache.cpp
+        src/mpi_datatype_oarchive.cpp
+        src/packed_iarchive.cpp
+        src/packed_oarchive.cpp
+        src/packed_skeleton_iarchive.cpp
+        src/packed_skeleton_oarchive.cpp
+        src/point_to_point.cpp
+        src/request.cpp
+        src/text_skeleton_oarchive.cpp
+        src/timer.cpp
+        )
 
 target_include_directories(boost_mpi PUBLIC
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  ${MPI_INCLUDE_PATH}
-  )
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        ${MPI_INCLUDE_PATH}
+        )
 
 set_property(TARGET boost_mpi APPEND PROPERTY
-  COMPILE_DEFINITIONS BOOST_MPI_SOURCE
-  )
+        COMPILE_DEFINITIONS BOOST_MPI_SOURCE
+        )
 
 target_link_libraries(boost_mpi PUBLIC
-  boost::assert
-  boost::serialization
-  boost::concept_check
-  boost::graph
-  ${MPI_LIBRARIES}
-  )
+        boost::assert
+        boost::serialization
+        boost::concept_check
+        boost::graph
+        ${MPI_LIBRARIES}
+        )
 
 add_library(boost::mpi ALIAS boost_mpi)
 set_property(TARGET boost_mpi PROPERTY EXPORT_NAME mpi)
 
 add_library(boost_mpi_python
-  src/python/serialize.cpp
-  )
+        src/python/serialize.cpp
+        )
 
 set_property(TARGET boost_mpi_python APPEND PROPERTY
-  COMPILE_DEFINITIONS BOOST_MPI_PYTHON_SOURCE
-  )
+        COMPILE_DEFINITIONS BOOST_MPI_PYTHON_SOURCE
+        )
 
 target_link_libraries(boost_mpi_python
-  boost::mpi
-  boost::python
-  )
+        boost::mpi
+        boost::python
+        )
 
 add_library(boost::mpi::python ALIAS boost_mpi_python)
 set_property(TARGET boost_mpi_python PROPERTY EXPORT_NAME mpi_python)
 
 if(BUILD_SHARED_LIBS)
-  add_library(boost_mpi-py MODULE
-    src/python/collectives.cpp
-    src/python/py_communicator.cpp
-    src/python/datatypes.cpp
-    src/python/documentation.cpp
-    src/python/py_environment.cpp
-    src/python/py_nonblocking.cpp
-    src/python/py_exception.cpp
-    src/python/module.cpp
-    src/python/py_request.cpp
-    src/python/skeleton_and_content.cpp
-    src/python/status.cpp
-    src/python/py_timer.cpp
-    )
-  target_link_libraries(boost_mpi-py
-    boost::mpi::python
-    )
-  set_target_properties(boost_mpi-py PROPERTIES
-    OUTPUT_NAME mpi
-    PREFIX ""
-    )
-  if(WIN32)
+    add_library(boost_mpi-py MODULE
+            src/python/collectives.cpp
+            src/python/py_communicator.cpp
+            src/python/datatypes.cpp
+            src/python/documentation.cpp
+            src/python/py_environment.cpp
+            src/python/py_nonblocking.cpp
+            src/python/py_exception.cpp
+            src/python/module.cpp
+            src/python/py_request.cpp
+            src/python/skeleton_and_content.cpp
+            src/python/status.cpp
+            src/python/py_timer.cpp
+            )
+    target_link_libraries(boost_mpi-py
+            boost::mpi::python
+            )
     set_target_properties(boost_mpi-py PROPERTIES
-      IMPORT_SUFFIX .pyd
-      SUFFIX .pyd
-      )
-  endif()
+            OUTPUT_NAME mpi
+            PREFIX ""
+            )
+    if(WIN32)
+        set_target_properties(boost_mpi-py PROPERTIES
+                IMPORT_SUFFIX .pyd
+                SUFFIX .pyd
+                )
+    endif()
 endif()
 
 install(DIRECTORY include/ DESTINATION include)
 
 install(TARGETS boost_mpi boost_mpi_python EXPORT ${PROJECT_NAME}Targets
-  RUNTIME DESTINATION bin
-  LIBRARY DESTINATION lib
-  ARCHIVE DESTINATION lib
-  )
+        RUNTIME DESTINATION bin
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib
+        )
 
 install(EXPORT ${PROJECT_NAME}Targets
-  FILE ${PROJECT_NAME}Targets.cmake
-  NAMESPACE boost::
-  DESTINATION lib/cmake/${PROJECT_NAME}
-  )
+        FILE ${PROJECT_NAME}Targets.cmake
+        NAMESPACE boost::
+        DESTINATION lib/cmake/${PROJECT_NAME}
+        )
 
 write_config_file("${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Config.cmake"
-  Serialization
-  ConceptCheck
-  Graph
-  )
+        Serialization
+        ConceptCheck
+        Graph
+        )
 write_basic_package_version_file("${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}ConfigVersion.cmake"
-  VERSION ${BOOST_VERSION}
-  COMPATIBILITY AnyNewerVersion
-  )
+        VERSION ${BOOST_VERSION}
+        COMPATIBILITY AnyNewerVersion
+        )
 
 install(FILES
-    "${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Config.cmake"
-    "${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}ConfigVersion.cmake"
-  DESTINATION lib/cmake/${PROJECT_NAME}
-)
+        "${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Config.cmake"
+        "${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}ConfigVersion.cmake"
+        DESTINATION lib/cmake/${PROJECT_NAME}
+        )
 
 export(TARGETS
-  NAMESPACE boost::
-  FILE ${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Targets.cmake)
+        NAMESPACE boost::
+        FILE ${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Targets.cmake)

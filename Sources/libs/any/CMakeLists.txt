@@ -4,51 +4,53 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostAny)
 
-add_subdirectory(test)
+if(BUILD_UNIT_TESTS)
+    add_subdirectory(test)
+endif()
 
 add_library(boost_any INTERFACE)
 add_library(boost::any ALIAS boost_any)
 set_property(TARGET boost_any PROPERTY EXPORT_NAME any)
 
 target_include_directories(boost_any INTERFACE
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  )
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        )
 
 target_link_libraries(boost_any INTERFACE
-  boost::assert
-  boost::config
-  boost::exception
-  boost::static_assert
-  boost::type_traits
-  boost::type_index
-  )
+        boost::assert
+        boost::config
+        boost::exception
+        boost::static_assert
+        boost::type_traits
+        boost::type_index
+        )
 
 install(DIRECTORY include/ DESTINATION include)
 
 install(TARGETS boost_any EXPORT ${PROJECT_NAME}Targets
-  INCLUDES DESTINATION include
-  )
+        INCLUDES DESTINATION include
+        )
 
 install(EXPORT ${PROJECT_NAME}Targets
-  FILE ${PROJECT_NAME}Targets.cmake
-  NAMESPACE boost::
-  DESTINATION lib/cmake/${PROJECT_NAME}
-  )
+        FILE ${PROJECT_NAME}Targets.cmake
+        NAMESPACE boost::
+        DESTINATION lib/cmake/${PROJECT_NAME}
+        )
 
 write_config_file("${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Config.cmake"
-  TypeTraits
-  )
+        TypeTraits
+        )
 write_basic_package_version_file("${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}ConfigVersion.cmake"
-  VERSION ${BOOST_VERSION}
-  COMPATIBILITY AnyNewerVersion
-  )
+        VERSION ${BOOST_VERSION}
+        COMPATIBILITY AnyNewerVersion
+        )
 
 install(FILES
-    "${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Config.cmake"
-    "${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}ConfigVersion.cmake"
-  DESTINATION lib/cmake/${PROJECT_NAME}
-)
+        "${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Config.cmake"
+        "${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}ConfigVersion.cmake"
+        DESTINATION lib/cmake/${PROJECT_NAME}
+        )
 
 export(TARGETS boost_any
-  NAMESPACE boost::
-  FILE ${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Targets.cmake)
+        NAMESPACE boost::
+        FILE ${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Targets.cmake)

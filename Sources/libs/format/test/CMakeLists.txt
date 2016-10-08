@@ -8,13 +8,13 @@ ryppl_find_and_use_package(BoostDetail)
 ryppl_find_and_use_package(BoostTest)
 
 ryppl_test_suite(
-  RUN
-    format_test1.cpp
-    format_test2.cpp
-    format_test3.cpp
-    format_test_wstring.cpp
-    format_test_enum.cpp
-  LINK_LIBRARIES
-    boost_test_exec_monitor
-  NO_SINGLE_TARGET
-  )
+        RUN
+        format_test1.cpp
+        format_test2.cpp
+        format_test3.cpp
+        format_test_wstring.cpp
+        format_test_enum.cpp
+        LINK_LIBRARIES
+        boost_test_exec_monitor
+        NO_SINGLE_TARGET
+)
