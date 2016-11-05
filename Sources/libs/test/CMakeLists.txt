@@ -55,11 +55,11 @@ add_library(boost_test_exec_monitor STATIC
         src/decorator.cpp
         src/execution_monitor.cpp
         src/framework.cpp
+        src/junit_log_formatter.cpp
         src/plain_report_formatter.cpp
         src/progress_monitor.cpp
         src/results_collector.cpp
         src/results_reporter.cpp
-        src/test_main.cpp
         src/test_tools.cpp
         src/test_tree.cpp
         src/unit_test_log.cpp
@@ -78,6 +78,7 @@ target_link_libraries(boost_test_exec_monitor PRIVATE
         boost::assert
         boost::conversion
         boost::algorithm
+        boost::align
         boost::math::special_functions
         boost::detail
         boost::concept_check
@@ -92,11 +93,11 @@ target_link_libraries(boost_test_exec_monitor PRIVATE
 
 list(APPEND UNIT_TEST_FRAMEWORK_SOURCES
         src/compiler_log_formatter.cpp
-        #    src/cpp_main.cpp
         src/debug.cpp
         src/decorator.cpp
         src/execution_monitor.cpp
         src/framework.cpp
+        src/junit_log_formatter.cpp
         src/plain_report_formatter.cpp
         src/progress_monitor.cpp
         src/results_collector.cpp
@@ -126,6 +127,7 @@ target_include_directories(boost_unit_test_framework PUBLIC
         )
 
 target_link_libraries(boost_unit_test_framework PUBLIC
+        boost::align
         boost::conversion
         boost::concept_check
         boost::detail
