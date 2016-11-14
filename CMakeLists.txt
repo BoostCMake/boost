@@ -28,4 +28,5 @@ endif()
 
 file(COPY "Sources/" DESTINATION "${CMAKE_BINARY_DIR}/Frameworks/boost")
 
-add_subdirectory("${CMAKE_BINARY_DIR}/Frameworks/boost" "${CMAKE_BINARY_DIR}/boost-build")
+add_subdirectory("${CMAKE_BINARY_DIR}/Frameworks/boost"
+    "${CMAKE_BINARY_DIR}/Frameworks/boost")
