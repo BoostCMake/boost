@@ -8,10 +8,10 @@ ryppl_find_and_use_package(BoostPolygon)
 ryppl_find_and_use_package(BoostTest)
 
 if(MSVC)
-  # <asynch-exceptions>on
+    # <asynch-exceptions>on
 endif(MSVC)
 
 ryppl_test_suite(
-  RUN 
-    gtl_boost_unit_test.cpp
-  )
+        RUN
+        gtl_boost_unit_test.cpp
+)

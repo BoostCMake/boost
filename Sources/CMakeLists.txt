@@ -10,7 +10,7 @@
 enable_language(CXX)
 
 # Must be set above synthesis of tag_version, CMAKE_xxx_POSTFIX, etc.
-set(BOOST_VERSION 1.61)
+set(BOOST_VERSION 1.62)
 
 # Toolset detection.
 if(MSVC60)
@@ -192,7 +192,7 @@ add_subdirectory(libs/iostreams)
 add_subdirectory(libs/iterator)
 add_subdirectory(libs/lambda)
 add_subdirectory(libs/lexical_cast)
-#add_subdirectory(libs/locale)
+add_subdirectory(libs/locale)
 add_subdirectory(libs/local_function)
 add_subdirectory(libs/lockfree)
 add_subdirectory(libs/log)

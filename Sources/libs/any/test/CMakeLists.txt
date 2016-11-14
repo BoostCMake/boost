@@ -4,19 +4,19 @@
 include(RypplTestSuite)
 
 ryppl_test_suite(
-  RUN
-    any_test.cpp
-  COMPILE_FAIL
-    any_cast_cv_failed.cpp
-  )
+        RUN
+        any_test.cpp
+        COMPILE_FAIL
+        any_cast_cv_failed.cpp
+)
 
 target_link_libraries(boostany-testdriver PRIVATE
-  boost::assert
-  boost::any
-  boost::type_index
-  )
+        boost::assert
+        boost::any
+        boost::type_index
+        )
 
 add_custom_target(${PROJECT_NAME}-test
-  COMMAND ${CMAKE_CTEST_COMMAND} -R "^${PROJECT_NAME}" ${CMAKE_BINARY_DIR}
-  DEPENDS boostany-testdriver
-  )
+        COMMAND ${CMAKE_CTEST_COMMAND} -R "^${PROJECT_NAME}" ${CMAKE_BINARY_DIR}
+        DEPENDS boostany-testdriver
+        )

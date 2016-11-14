@@ -54,37 +54,37 @@ set_property(TARGET boost_signals PROPERTY EXPORT_NAME signals)
 install(DIRECTORY include/ DESTINATION include)
 
 install(TARGETS boost_signals EXPORT ${PROJECT_NAME}Targets
-    RUNTIME DESTINATION bin
-    LIBRARY DESTINATION lib
-    ARCHIVE DESTINATION lib
-    )
+        RUNTIME DESTINATION bin
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib
+        )
 
 install(EXPORT ${PROJECT_NAME}Targets
-    FILE ${PROJECT_NAME}Targets.cmake
-    NAMESPACE boost::
-    DESTINATION lib/cmake/${PROJECT_NAME}
-    )
+        FILE ${PROJECT_NAME}Targets.cmake
+        NAMESPACE boost::
+        DESTINATION lib/cmake/${PROJECT_NAME}
+        )
 
 write_config_file("${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Config.cmake"
-    Any
-    Config
-    Detail
-    Exception
-    Function
-    TypeTraits
-    Iterator
-    )
+        Any
+        Config
+        Detail
+        Exception
+        Function
+        TypeTraits
+        Iterator
+        )
 write_basic_package_version_file("${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}ConfigVersion.cmake"
-    VERSION ${BOOST_VERSION}
-    COMPATIBILITY AnyNewerVersion
-    )
+        VERSION ${BOOST_VERSION}
+        COMPATIBILITY AnyNewerVersion
+        )
 
 install(FILES
-    "${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Config.cmake"
-    "${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}ConfigVersion.cmake"
-    DESTINATION lib/cmake/${PROJECT_NAME}
-    )
+        "${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Config.cmake"
+        "${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}ConfigVersion.cmake"
+        DESTINATION lib/cmake/${PROJECT_NAME}
+        )
 
-export(TARGETS 
-    NAMESPACE boost::
-    FILE ${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Targets.cmake)
+export(TARGETS
+        NAMESPACE boost::
+        FILE ${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Targets.cmake)

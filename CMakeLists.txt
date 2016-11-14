@@ -6,6 +6,8 @@ project(BoostCMake NONE)
 option(BUILD_UNIT_TESTS "Build unit tests" FALSE)
 option(BUILD_SHARED_LIBRARIES "Build shared libraries" TRUE)
 
+set(APPLE_SIGN_IDENTITY "" CACHE STRING "Sign identity name")
+
 if(BUILD_UNIT_TESTS)
     enable_testing()
 endif()
@@ -27,4 +29,5 @@ endif()
 
 file(COPY "Sources/" DESTINATION "${CMAKE_BINARY_DIR}/Frameworks/boost")
 
-add_subdirectory("${CMAKE_BINARY_DIR}/Frameworks/boost" "${CMAKE_BINARY_DIR}/boost-build")
+add_subdirectory("${CMAKE_BINARY_DIR}/Frameworks/boost"
+    "${CMAKE_BINARY_DIR}/Frameworks/boost")

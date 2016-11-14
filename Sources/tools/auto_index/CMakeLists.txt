@@ -5,32 +5,36 @@ cmake_minimum_required(VERSION 2.8.11)
 project(BoostAutoIndex CXX)
 
 add_executable(auto_index
-  src/auto_index.cpp
-  src/file_scanning.cpp
-  src/index_generator.cpp
-  src/tiny_xml.cpp
-  )
+    src/auto_index.cpp
+    src/file_scanning.cpp
+    src/index_generator.cpp
+    src/tiny_xml.cpp
+    )
 
 target_link_libraries(auto_index PRIVATE
-  boost::assert
-  boost::align
-  boost::algorithm
-  boost::program_options
-  boost::filesystem
-  boost::format
-  boost::system
-  boost::regex
-  )
+    boost::any
+    boost::assert
+    boost::align
+    boost::array
+    boost::algorithm
+    boost::program_options
+    boost::filesystem
+    boost::function
+    boost::format
+    boost::lexical_cast
+    boost::system
+    boost::regex
+    )
 
 install(TARGETS auto_index EXPORT ${PROJECT_NAME}Targets
-  RUNTIME DESTINATION bin
-  )
+    RUNTIME DESTINATION bin
+    )
 
 install(EXPORT ${PROJECT_NAME}Targets
-  FILE ${PROJECT_NAME}Targets.cmake
-  DESTINATION CMake
-  )
+    FILE ${PROJECT_NAME}Targets.cmake
+    DESTINATION CMake
+    )
 
 export(TARGETS 
-  NAMESPACE boost::
-  FILE ${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Targets.cmake)
+    NAMESPACE boost::
+    FILE ${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Targets.cmake)

@@ -7,6 +7,6 @@ include(RypplTestSuite)
 ryppl_find_and_use_package(BoostFunctional)
 
 ryppl_test_suite(
-  RUN
-    function_test.cpp
-  )
+        RUN
+        function_test.cpp
+)

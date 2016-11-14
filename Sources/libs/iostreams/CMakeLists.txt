@@ -24,6 +24,7 @@ set(sources
     src/mapped_file.cpp
     )
 
+
 set(link_libraries)
 
 if(ZLIB_FOUND)

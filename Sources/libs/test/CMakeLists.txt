@@ -18,9 +18,12 @@ list(APPEND PRG_EXEC_MONITOR_SOURCES
     src/cpp_main.cpp
     )
 
+add_definitions(-DBOOST_TEST_DYN_LINK=1)
+add_definitions(-DBOOST_TEST_NO_AUTO_LINK=1)
+
 if(BUILD_SHARED_LIBRARIES)
     add_library(boost_prg_exec_monitor SHARED
-        ${PRG_EXEC_MONITOR_SOURCES} 
+        ${PRG_EXEC_MONITOR_SOURCES}
         )
 else()
     add_library(boost_prg_exec_monitor STATIC
@@ -28,8 +31,10 @@ else()
         )
 endif()
 
-add_definitions(-DBOOST_TEST_DYN_LINK=1)
-add_definitions(-DBOOST_TEST_NO_AUTO_LINK=1)
+if(BUILD_SHARED_LIBRARIES)
+    add_definitions(-DBOOST_TEST_DYN_LINK=1)
+    add_definitions(-DBOOST_TEST_NO_AUTO_LINK=1)
+endif()
 
 target_include_directories(boost_prg_exec_monitor PUBLIC
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
@@ -44,28 +49,52 @@ target_link_libraries(boost_prg_exec_monitor PUBLIC
     boost::exception
     boost::function
     boost::type_traits
+    boost::type_index
     )
 
-add_library(boost_test_exec_monitor STATIC
-    src/compiler_log_formatter.cpp
-    src/debug.cpp
-    src/decorator.cpp
-    src/execution_monitor.cpp
-    src/framework.cpp
-    src/plain_report_formatter.cpp
-    src/progress_monitor.cpp
-    src/results_collector.cpp
-    src/results_reporter.cpp
-    src/test_main.cpp
-    src/test_tools.cpp
-    src/test_tree.cpp
-    src/unit_test_log.cpp
-    src/unit_test_main.cpp
-    src/unit_test_monitor.cpp
-    src/unit_test_parameters.cpp
-    src/xml_log_formatter.cpp
-    src/xml_report_formatter.cpp
-    )
+if (BUILD_SHARED_LIBRARIES)
+    add_library(boost_test_exec_monitor SHARED
+        src/compiler_log_formatter.cpp
+        src/debug.cpp
+        src/decorator.cpp
+        src/execution_monitor.cpp
+        src/framework.cpp
+        src/junit_log_formatter.cpp
+        src/plain_report_formatter.cpp
+        src/progress_monitor.cpp
+        src/results_collector.cpp
+        src/results_reporter.cpp
+        src/test_tools.cpp
+        src/test_tree.cpp
+        src/unit_test_log.cpp
+        src/unit_test_main.cpp
+        src/unit_test_monitor.cpp
+        src/unit_test_parameters.cpp
+        src/xml_log_formatter.cpp
+        src/xml_report_formatter.cpp
+        )
+else()
+    add_library(boost_test_exec_monitor STATIC
+        src/compiler_log_formatter.cpp
+        src/debug.cpp
+        src/decorator.cpp
+        src/execution_monitor.cpp
+        src/framework.cpp
+        src/junit_log_formatter.cpp
+        src/plain_report_formatter.cpp
+        src/progress_monitor.cpp
+        src/results_collector.cpp
+        src/results_reporter.cpp
+        src/test_tools.cpp
+        src/test_tree.cpp
+        src/unit_test_log.cpp
+        src/unit_test_main.cpp
+        src/unit_test_monitor.cpp
+        src/unit_test_parameters.cpp
+        src/xml_log_formatter.cpp
+        src/xml_report_formatter.cpp
+        )
+endif()
 
 target_include_directories(boost_test_exec_monitor PUBLIC
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
@@ -75,24 +104,26 @@ target_link_libraries(boost_test_exec_monitor PRIVATE
     boost::assert
     boost::conversion
     boost::algorithm
+    boost::align
     boost::math::special_functions
     boost::detail
     boost::concept_check
     boost::timer::header_only
     boost::function
     boost::type_traits
+    boost::type_index
     boost::move
     boost::io
     boost::optional
     )
 
 list(APPEND UNIT_TEST_FRAMEWORK_SOURCES
-    src/compiler_log_formatter.cpp 
-    src/cpp_main.cpp
+    src/compiler_log_formatter.cpp
     src/debug.cpp
     src/decorator.cpp
     src/execution_monitor.cpp
     src/framework.cpp
+    src/junit_log_formatter.cpp
     src/plain_report_formatter.cpp
     src/progress_monitor.cpp
     src/results_collector.cpp
@@ -122,6 +153,7 @@ target_include_directories(boost_unit_test_framework PUBLIC
     )
 
 target_link_libraries(boost_unit_test_framework PUBLIC
+    boost::align
     boost::conversion
     boost::concept_check
     boost::detail
@@ -130,6 +162,7 @@ target_link_libraries(boost_unit_test_framework PUBLIC
     boost::timer::header_only
     boost::function
     boost::type_traits
+    boost::type_index
     boost::iterator
     boost::move
     boost::io
@@ -170,7 +203,9 @@ write_config_file("${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}
     Exception
     Function
     TypeTraits
+    TypeIndex
     )
+
 write_basic_package_version_file("${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}ConfigVersion.cmake"
     VERSION ${BOOST_VERSION}
     COMPATIBILITY AnyNewerVersion

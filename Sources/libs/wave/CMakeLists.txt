@@ -15,16 +15,16 @@ endif()
 
 list(APPEND CURRENT_TARGET_SOURCES
     src/instantiate_cpp_exprgrammar.cpp
-    src/instantiate_cpp_grammar.cpp
-    src/instantiate_cpp_literalgrs.cpp
-    src/instantiate_defined_grammar.cpp
-    src/instantiate_predef_macros.cpp
-    src/instantiate_re2c_lexer.cpp
-    src/instantiate_re2c_lexer_str.cpp
-    src/token_ids.cpp
-    src/wave_config_constant.cpp
-    src/cpplexer/re2clex/aq.cpp
-    src/cpplexer/re2clex/cpp_re.cpp    
+        src/instantiate_cpp_grammar.cpp
+        src/instantiate_cpp_literalgrs.cpp
+        src/instantiate_defined_grammar.cpp
+        src/instantiate_predef_macros.cpp
+        src/instantiate_re2c_lexer.cpp
+        src/instantiate_re2c_lexer_str.cpp
+        src/token_ids.cpp
+        src/wave_config_constant.cpp
+        src/cpplexer/re2clex/aq.cpp
+        src/cpplexer/re2clex/cpp_re.cpp
     )
 
 if(BUILD_SHARED_LIBRARIES)
@@ -69,29 +69,29 @@ target_link_libraries(wave
 install(DIRECTORY include/ DESTINATION include)
 
 install(TARGETS boost_wave wave EXPORT ${PROJECT_NAME}Targets
-    RUNTIME DESTINATION bin
-    LIBRARY DESTINATION lib
-    ARCHIVE DESTINATION lib
-    )
+        RUNTIME DESTINATION bin
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib
+        )
 
 install(EXPORT ${PROJECT_NAME}Targets
-    FILE ${PROJECT_NAME}Targets.cmake
-    NAMESPACE boost::
-    DESTINATION lib/cmake/${PROJECT_NAME}
-    )
+        FILE ${PROJECT_NAME}Targets.cmake
+        NAMESPACE boost::
+        DESTINATION lib/cmake/${PROJECT_NAME}
+        )
 
 write_config_file("${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Config.cmake")
 write_basic_package_version_file("${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}ConfigVersion.cmake"
-    VERSION ${BOOST_VERSION}
-    COMPATIBILITY AnyNewerVersion
-    )
+        VERSION ${BOOST_VERSION}
+        COMPATIBILITY AnyNewerVersion
+        )
 
 install(FILES
-    "${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Config.cmake"
-    "${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}ConfigVersion.cmake"
-    DESTINATION lib/cmake/${PROJECT_NAME}
-    )
+        "${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Config.cmake"
+        "${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}ConfigVersion.cmake"
+        DESTINATION lib/cmake/${PROJECT_NAME}
+        )
 
 export(TARGETS boost_wave wave
-    NAMESPACE boost::
-    FILE ${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Targets.cmake)
+        NAMESPACE boost::
+        FILE ${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Targets.cmake)

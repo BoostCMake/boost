@@ -8,15 +8,20 @@ project(BoostThread)
 
 find_package(Threads)
 
+list(APPEND sources
+    src/future.cpp
+    src/tss_null.cpp
+    )
+
 if(CMAKE_USE_WIN32_THREADS_INIT)
-    set(sources
+    list(APPEND sources
         src/win32/thread.cpp
         src/win32/tss_dll.cpp
         src/win32/tss_pe.cpp
         src/win32/gettickcount64.cpp
         )
 else()
-    set(sources
+    list(APPEND sources
         src/pthread/thread.cpp
         src/pthread/once.cpp
         )
@@ -42,12 +47,16 @@ target_link_libraries(boost_thread PUBLIC
     boost::align
     boost::algorithm
     boost::chrono
+    boost::container
     boost::date_time
     boost::function
+    boost::functional
     boost::io
     boost::intrusive
+    boost::lexical_cast
     boost::move
     boost::optional
+    boost::type_index
     ${CMAKE_THREAD_LIBS_INIT}
     )
 

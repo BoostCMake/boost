@@ -14,6 +14,7 @@ list(APPEND CURRENT_TARGET_SOURCES
     src/gregorian/greg_month.cpp
     src/gregorian/greg_weekday.cpp
     src/gregorian/date_generators.cpp
+    src/gregorian/gregorian_types.cpp
     )
 
 if(BUILD_SHARED_LIBRARIES)
