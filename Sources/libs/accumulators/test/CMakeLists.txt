@@ -51,6 +51,14 @@ set(test_list
         )
 
 set(test_targets)
+
+if(BUILD_SHARED_LIBRARIES)
+    set(Boost_USE_STATIC_LIBS FALSE)
+    add_definitions(-DBOOST_TEST_DYN_LINK)
+else()
+    set(Boost_USE_STATIC_LIBS TRUE)
+endif()
+
 foreach(test IN LISTS test_list)
     set(target "${PROJECT_NAME}-test-${test}")
     add_executable(${target} ${test})

@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 2.8.11)
 project(BoostAssign)
 
 if(BUILD_UNIT_TESTS)
-    add_subdirectory(test)
+#    add_subdirectory(test)
 endif()
 
 add_library(boost_assign INTERFACE)
