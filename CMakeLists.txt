@@ -24,10 +24,10 @@ if(NOT EXISTS "${PROJECT_SOURCE_DIR}/Frameworks/boost")
 endif()
 
 if(NOT EXISTS "${CMAKE_BINARY_DIR}/Frameworks/boost")
-    file(COPY "Frameworks/boost" DESTINATION "${CMAKE_BINARY_DIR}/Frameworks")
+    file(COPY "frameworks/boost" DESTINATION "${CMAKE_BINARY_DIR}/Frameworks")
 endif()
 
-file(COPY "Sources/" DESTINATION "${CMAKE_BINARY_DIR}/Frameworks/boost")
+file(COPY "src/" DESTINATION "${CMAKE_BINARY_DIR}/Frameworks/boost")
 
 add_subdirectory("${CMAKE_BINARY_DIR}/Frameworks/boost"
     "${CMAKE_BINARY_DIR}/Frameworks/boost")
