@@ -9,7 +9,7 @@ project(BoostSignals CXX)
 if(MSVC)
     add_definitions(
         /wd4251 # class needs to have dll-interface to be used by clients
-        /wd4275 # 'boost::noncopyable' used as base for dll-interface class 
+        /wd4275 # 'boost::noncopyable' used as base for dll-interface class
         )
 endif()
 
@@ -18,7 +18,7 @@ list(APPEND CURRENT_TARGET_SOURCES
     src/connection.cpp
     src/named_slot_map.cpp
     src/signal_base.cpp
-    src/slot.cpp    
+    src/slot.cpp
     )
 
 if(BUILD_SHARED_LIBRARIES)
@@ -88,3 +88,8 @@ install(FILES
 export(TARGETS
         NAMESPACE boost::
         FILE ${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Targets.cmake)
+
+if(APPLE AND NOT ${CMAKE_TARGET_ARCHITECTURE} STREQUAL ${CMAKE_HOST_SYSTEM_PROCESSOR})
+    set_target_properties(boost_signals PROPERTIES XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY ${APPLE_CODE_SIGN_IDENTITY})
+    set_target_properties(boost_signals PROPERTIES XCODE_ATTRIBUTE_DEVELOPMENT_TEAM ${CMAKE_XCODE_ATTRIBUTE_DEVELOPMENT_TEAM})
+endif()

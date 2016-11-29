@@ -55,7 +55,7 @@ else()
 endif()
 
 list(APPEND CURRENT_TARGET_SOURCES
-    src/archive_exception.cpp
+        src/archive_exception.cpp
         src/basic_archive.cpp
         src/basic_iarchive.cpp
         src/basic_iserializer.cpp
@@ -89,12 +89,12 @@ list(APPEND CURRENT_TARGET_SOURCES
 
 if(BUILD_SHARED_LIBRARIES)
     add_library(boost_serialization SHARED
-        ${CURRENT_TARGET_SOURCES}
-        )
+            ${CURRENT_TARGET_SOURCES}
+            )
 else()
     add_library(boost_serialization STATIC
-        ${CURRENT_TARGET_SOURCES}
-        )    
+            ${CURRENT_TARGET_SOURCES}
+            )
 endif()
 
 target_include_directories(boost_serialization PUBLIC
@@ -189,6 +189,14 @@ install(FILES
         DESTINATION lib/cmake/${PROJECT_NAME}
         )
 
-export(TARGETS
+export(TARGETS boost_serialization boost_wserialization
         NAMESPACE boost::
         FILE ${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Targets.cmake)
+
+if(APPLE AND NOT ${CMAKE_TARGET_ARCHITECTURE} STREQUAL ${CMAKE_HOST_SYSTEM_PROCESSOR})
+    set_target_properties(boost_serialization PROPERTIES XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY ${APPLE_CODE_SIGN_IDENTITY})
+    set_target_properties(boost_serialization PROPERTIES XCODE_ATTRIBUTE_DEVELOPMENT_TEAM ${CMAKE_XCODE_ATTRIBUTE_DEVELOPMENT_TEAM})
+
+    set_target_properties(boost_wserialization PROPERTIES XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY ${APPLE_CODE_SIGN_IDENTITY})
+    set_target_properties(boost_wserialization PROPERTIES XCODE_ATTRIBUTE_DEVELOPMENT_TEAM ${CMAKE_XCODE_ATTRIBUTE_DEVELOPMENT_TEAM})
+endif()

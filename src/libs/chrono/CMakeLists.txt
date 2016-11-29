@@ -8,12 +8,12 @@ project(BoostChrono CXX)
 
 if(CMAKE_SYSTEM MATCHES "Linux")
     find_library(RT_LIBRARY rt)
-endif() 
+endif()
 
 list(APPEND CURRENT_TARGET_SOURCES
     src/chrono.cpp
     src/thread_clock.cpp
-    src/process_cpu_clocks.cpp    
+    src/process_cpu_clocks.cpp
     )
 
 if(BUILD_SHARED_LIBRARIES)
@@ -78,3 +78,8 @@ install(FILES
 export(TARGETS boost_chrono
     NAMESPACE boost::
     FILE ${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Targets.cmake)
+
+if(APPLE AND NOT ${CMAKE_TARGET_ARCHITECTURE} STREQUAL ${CMAKE_HOST_SYSTEM_PROCESSOR})
+    set_target_properties(boost_chrono PROPERTIES XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY ${APPLE_CODE_SIGN_IDENTITY})
+    set_target_properties(boost_chrono PROPERTIES XCODE_ATTRIBUTE_DEVELOPMENT_TEAM ${CMAKE_XCODE_ATTRIBUTE_DEVELOPMENT_TEAM})
+endif()

@@ -10,7 +10,7 @@ include_directories(include)
 
 list(APPEND CURRENT_TARGET_SOURCES
    src/error_code.cpp
-#  src/local_free_on_destruction.hpp 
+#  src/local_free_on_destruction.hpp
     )
 
 if(BUILD_SHARED_LIBRARIES)
@@ -74,3 +74,8 @@ install(FILES
 export(TARGETS boost_system
         NAMESPACE boost::
         FILE ${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Targets.cmake)
+
+if(APPLE AND NOT ${CMAKE_TARGET_ARCHITECTURE} STREQUAL ${CMAKE_HOST_SYSTEM_PROCESSOR})
+    set_target_properties(boost_system PROPERTIES XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY ${APPLE_CODE_SIGN_IDENTITY})
+    set_target_properties(boost_system PROPERTIES XCODE_ATTRIBUTE_DEVELOPMENT_TEAM ${CMAKE_XCODE_ATTRIBUTE_DEVELOPMENT_TEAM})
+endif()
