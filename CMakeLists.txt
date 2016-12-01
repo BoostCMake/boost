@@ -3,8 +3,6 @@ cmake_policy(SET CMP0042 NEW)
 
 project(BoostCMake NONE)
 
-list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/Modules")
-
 include(TargetArchitecture)
 
 option(BUILD_UNIT_TESTS "Build unit tests" FALSE)
@@ -12,6 +10,9 @@ option(BUILD_SHARED_LIBRARIES "Build shared libraries" TRUE)
 
 set(APPLE_CODE_SIGN_IDENTITY "" CACHE STRING "Sign identity name")
 set(CMAKE_TARGET_ARCHITECTURE "" CACHE string "Target build architecture")
+set(BOOST_PROJECT_SOURCE_DIR "" CACHE string "Source boost project directory")
+
+list(APPEND CMAKE_MODULE_PATH "${BOOST_PROJECT_SOURCE_DIR}/modules")
 
 if(NOT CMAKE_TARGET_ARCHITECTURE)
     target_architecture(CMAKE_TARGET_ARCHITECTURE)

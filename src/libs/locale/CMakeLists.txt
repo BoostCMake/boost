@@ -6,14 +6,20 @@ cmake_policy(SET CMP0042 NEW)
 
 project(BoostLocale CXX)
 
-find_package(Iconv)
+if(NOT ICONV_FOUND)
+    find_package(Iconv)
+endif()
+
 if(ICONV_FOUND)
     option(BOOST_LOCALE_NO_ICONV "Disable iconv library" OFF)
 else()
     set(BOOST_LOCALE_NO_ICONV ON)
 endif()
 
-find_package(ICU)
+if(NOT ICU_FOUND)
+    find_package(ICU)
+endif()
+
 if(ICU_FOUND AND ICU_I18N_FOUND)
     option(BOOST_LOCALE_NO_ICU "Disable ICU library/backend" OFF)
 else()
@@ -40,15 +46,13 @@ else()
     set(BOOST_LOCALE_NO_WINAPI_BACKEND ON)
 endif()
 
-set(link_libraries)
-
 add_definitions(-DBOOST_THREAD_NO_LIB=1)
 
 if(BOOST_LOCALE_NO_ICONV)
     add_definitions(-DBOOST_LOCALE_NO_ICONV)
 else()
     include_directories(${ICONV_INCLUDE_DIR})
-    add_definitions(-DBOOST_LOCALE_WITH_ICONV=1)
+    add_definitions(-DBOOST_LOCALE_WITH_ICONV)
     list(APPEND link_libraries
             ${ICONV_LIBRARIES}
             )
@@ -83,10 +87,14 @@ else()
             )
 endif()
 
+if(BOOST_LOCALE_NO_ICU AND BOOST_LOCALE_NO_ICONV)
+    message(FATAL_ERROR "Boost.Locale needs ICU or Iconv to be built")
+endif()
+
 if(BOOST_LOCALE_NO_POSIX_BACKEND)
     add_definitions(-DBOOST_LOCALE_NO_POSIX_BACKEND)
 else()
-    add_definitions(-DBOOST_LOCALE_WITH_POSIX_BACKEND=1)
+    add_definitions(-DBOOST_LOCALE_WITH_POSIX_BACKEND)
     list(APPEND sources
             src/posix/collate.cpp
             src/posix/converter.cpp
@@ -104,7 +112,7 @@ endif()
 if(BOOST_LOCALE_NO_STD_BACKEND)
     add_definitions(-DBOOST_LOCALE_NO_STD_BACKEND)
 else()
-    add_definitions(-DBOOST_LOCALE_WITH_STD_BACKEND=1)
+    add_definitions(-DBOOST_LOCALE_WITH_STD_BACKEND)
     list(APPEND sources
             src/std/codecvt.cpp
             src/std/collate.cpp
@@ -122,7 +130,7 @@ endif()
 if(BOOST_LOCALE_NO_WINAPI_BACKEND)
     add_definitions(-DBOOST_LOCALE_NO_WINAPI_BACKEND)
 else()
-    add_definitions(-DBOOST_LOCALE_WITH_WINAPI_BACKEND=1)
+    add_definitions(-DBOOST_LOCALE_WITH_WINAPI_BACKEND)
     list(APPEND sources
             src/win32/collate.cpp
             src/win32/converter.cpp
@@ -180,12 +188,12 @@ list(APPEND tests
 
 if(BUILD_SHARED_LIBRARIES)
     add_library(boost_locale SHARED
-        ${sources}
-        )
+            ${sources}
+            )
 else()
     add_library(boost_locale STATIC
-        ${sources}
-        )
+            ${sources}
+            )
 endif()
 
 target_include_directories(boost_locale BEFORE PUBLIC
@@ -195,6 +203,7 @@ target_include_directories(boost_locale BEFORE PUBLIC
 target_link_libraries(boost_locale PRIVATE
         ${link_libraries}
         boost::assert
+        boost::unordered
         boost::thread
         )
 
