@@ -17,7 +17,7 @@ endif(POLICY CMP0063)
 if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     add_definitions(-ftemplate-depth=300)
     # we use gcc to test for C++03 compatibility
-    add_definitions(std=c++03)
+    add_definitions(-std=c++03)
     set(COMPILER_SUPPORTS_CXX11 FALSE)
 elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     add_definitions(/wd4996)
