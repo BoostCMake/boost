@@ -125,9 +125,9 @@ if(WIN32)
 elseif(UNIX AND NOT APPLE)
     list(APPEND CURRENT_TARGET_LIBRARIES
             rt
-            socket
+#            socket
             nsl
-            ipv6
+#            ipv6
             )
 endif()
 
